@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/onderbouwing")({
   head: () => ({
@@ -52,14 +53,11 @@ function Onderbouwing() {
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
         <p className="eyebrow text-teal">Bronnen en uitgangspunten</p>
         <div className="mt-12 space-y-10">
-          {bronnen.map((b) => (
-            <article
-              key={b.label}
-              className="hairline grid gap-4 pt-8 first:border-none first:pt-0 md:grid-cols-[1fr_1.6fr] md:gap-12"
-            >
+          {bronnen.map((b, i) => (
+            <Reveal as="article" key={b.label} delay={i * 90} className="hairline grid gap-4 pt-8 first:border-none first:pt-0 md:grid-cols-[1fr_1.6fr] md:gap-12">
               <h2 className="text-lg font-semibold leading-snug">{b.label}</h2>
               <p className="text-sm leading-relaxed text-muted-foreground">{b.body}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -81,11 +79,11 @@ function Onderbouwing() {
                 "Geen opslag",
                 "Gesprekken worden niet bewaard en niet gebruikt om modellen te trainen.",
               ],
-            ].map(([t, b]) => (
-              <div key={t} className="border-t border-ink-foreground/25 pt-6">
+            ].map(([t, b], i) => (
+              <Reveal key={t} delay={i * 90} className="border-t border-ink-foreground/25 pt-6">
                 <h3 className="font-display text-base font-semibold">{t}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-foreground/70">{b}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

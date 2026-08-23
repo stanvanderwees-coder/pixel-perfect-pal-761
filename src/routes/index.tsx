@@ -9,6 +9,7 @@ import {
   School,
 } from "lucide-react";
 import heroStudent from "@/assets/hero-student.jpg";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,7 +105,7 @@ function Home() {
       {/* Twee ingangen */}
       <section className="band-sand">
         <div className="mx-auto grid max-w-6xl gap-px overflow-hidden border-y border-border bg-border md:grid-cols-2">
-          <div className="bg-card px-6 py-12 sm:px-10">
+          <Reveal hover="lift" className="bg-card px-6 py-12 sm:px-10">
             <GraduationCap className="size-6 text-teal" />
             <h2 className="mt-6 text-2xl font-semibold">Ik ben scholier</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -117,8 +118,8 @@ function Home() {
             >
               Wat het je oplevert <ArrowRight className="size-4" />
             </Link>
-          </div>
-          <div className="bg-card px-6 py-12 sm:px-10">
+          </Reveal>
+          <Reveal hover="lift" delay={120} className="bg-card px-6 py-12 sm:px-10">
             <School className="size-6 text-teal" />
             <h2 className="mt-6 text-2xl font-semibold">Ik ben decaan of school</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -131,7 +132,7 @@ function Home() {
             >
               Voor scholen <ArrowRight className="size-4" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -143,14 +144,14 @@ function Home() {
         </h2>
         <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="border-t-2 border-ink pt-6">
+            <Reveal as="li" key={s.title} delay={i * 100} className="border-t-2 border-ink pt-6">
               <div className="flex items-center justify-between">
                 <s.icon className="size-5 text-teal" />
                 <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
               </div>
               <h3 className="mt-5 text-lg font-semibold leading-snug">{s.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </section>
@@ -193,11 +194,11 @@ function Home() {
               ["~30%", "uitval in het eerste hbo-jaar"],
               ["48%", "noemt verkeerde studiekeuze"],
               ["49%", "verwachtingen kwamen niet uit"],
-            ].map(([n, l]) => (
-              <div key={l}>
+            ].map(([n, l], i) => (
+              <Reveal as="div" key={l} delay={i * 90}>
                 <dt className="font-display text-4xl font-semibold text-deep">{n}</dt>
                 <dd className="mt-2 max-w-[14rem] text-sm text-muted-foreground">{l}</dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
           <div className="hairline pt-6 lg:border-none lg:pt-0">
@@ -222,7 +223,7 @@ function Home() {
 
       {/* Slot-CTA */}
       <section className="border-y border-border band-sand">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <Reveal className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold sm:text-3xl">Gewoon even proberen?</h2>
             <p className="mt-3 text-sm text-muted-foreground">
@@ -236,7 +237,7 @@ function Home() {
             Start de tool
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   );

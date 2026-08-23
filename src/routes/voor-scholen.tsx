@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/voor-scholen")({
   head: () => ({
@@ -61,11 +62,11 @@ function VoorScholen() {
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
         <p className="eyebrow text-teal">Hoe scholen het inzetten</p>
         <div className="mt-12 grid gap-x-16 gap-y-12 md:grid-cols-2">
-          {inzet.map((i) => (
-            <div key={i.title} className="border-t-2 border-ink pt-6">
+          {inzet.map((i, idx) => (
+            <Reveal key={i.title} delay={idx * 90} hover="lift" className="border-t-2 border-ink pt-6 bg-card px-5 -mx-5 py-5 rounded-sm">
               <h2 className="text-lg font-semibold">{i.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

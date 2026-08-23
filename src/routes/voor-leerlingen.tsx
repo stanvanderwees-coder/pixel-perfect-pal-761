@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/voor-leerlingen")({
   head: () => ({
@@ -74,11 +75,11 @@ function VoorLeerlingen() {
             </h2>
           </div>
           <ul className="space-y-6">
-            {opbrengst.map((o) => (
-              <li key={o} className="hairline flex gap-4 pt-6 first:border-none first:pt-0">
+            {opbrengst.map((o, i) => (
+              <Reveal as="li" key={o} delay={i * 90} className="hairline flex gap-4 pt-6 first:border-none first:pt-0">
                 <Check className="mt-0.5 size-4 shrink-0 text-teal" />
                 <span className="text-sm leading-relaxed text-muted-foreground">{o}</span>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
@@ -89,11 +90,11 @@ function VoorLeerlingen() {
           <p className="eyebrow text-teal">Vragen</p>
           <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Dit vragen leerlingen ons</h2>
           <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
-            {vragen.map((v) => (
-              <div key={v.q}>
+            {vragen.map((v, i) => (
+              <Reveal key={v.q} delay={i * 80} hover="lift" className="bg-card border border-border rounded-sm p-5">
                 <h3 className="text-base font-semibold">{v.q}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.a}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

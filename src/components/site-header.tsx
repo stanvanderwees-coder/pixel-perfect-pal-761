@@ -56,7 +56,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="mobile-menu-enter border-t border-border bg-background md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col px-5 py-3">
             {links.map((l) => (
               <Link
