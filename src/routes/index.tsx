@@ -223,7 +223,7 @@ function Home() {
 
       {/* Slot-CTA */}
       <section className="border-y border-border band-sand">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <Reveal className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold sm:text-3xl">Gewoon even proberen?</h2>
             <p className="mt-3 text-sm text-muted-foreground">
@@ -237,7 +237,7 @@ function Home() {
             Start de tool
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   );
