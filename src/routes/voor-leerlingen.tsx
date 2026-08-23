@@ -75,11 +75,11 @@ function VoorLeerlingen() {
             </h2>
           </div>
           <ul className="space-y-6">
-            {opbrengst.map((o) => (
-              <li key={o} className="hairline flex gap-4 pt-6 first:border-none first:pt-0">
+            {opbrengst.map((o, i) => (
+              <Reveal as="li" key={o} delay={i * 90} className="hairline flex gap-4 pt-6 first:border-none first:pt-0">
                 <Check className="mt-0.5 size-4 shrink-0 text-teal" />
                 <span className="text-sm leading-relaxed text-muted-foreground">{o}</span>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
