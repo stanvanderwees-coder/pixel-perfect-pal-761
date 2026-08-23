@@ -194,11 +194,11 @@ function Home() {
               ["~30%", "uitval in het eerste hbo-jaar"],
               ["48%", "noemt verkeerde studiekeuze"],
               ["49%", "verwachtingen kwamen niet uit"],
-            ].map(([n, l]) => (
-              <div key={l}>
+            ].map(([n, l], i) => (
+              <Reveal as="div" key={l} delay={i * 90}>
                 <dt className="font-display text-4xl font-semibold text-deep">{n}</dt>
                 <dd className="mt-2 max-w-[14rem] text-sm text-muted-foreground">{l}</dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
           <div className="hairline pt-6 lg:border-none lg:pt-0">
