@@ -14,7 +14,7 @@ type RevealProps = {
 /**
  * Reveals its children with a fade-up entrance once it scrolls into view.
  * Uses IntersectionObserver; no animation library. Respects prefers-reduced-motion
- * (handled in CSS).
+ * (handled in CSS via [data-reveal].is-visible).
  */
 export function Reveal({ children, as, delay = 0, className, hover }: RevealProps) {
   const Tag = (as ?? "div") as ElementType;
@@ -53,13 +53,9 @@ export function Reveal({ children, as, delay = 0, className, hover }: RevealProp
       ref={ref}
       data-reveal=""
       data-hover={hover}
-      className={className}
+      className={[className, visible ? "is-visible" : ""].filter(Boolean).join(" ")}
       style={delay ? { animationDelay: `${delay}ms` } : undefined}
-      // Once visible, keep the class so the animation holds its end state.
-      {...(visible ? { "data-state": "visible" } : {})}
     >
-      {/* Toggle visibility via class so CSS handles the play. */}
-      <input type="hidden" data-visible={visible ? "1" : "0"} readOnly />
       {children}
     </Tag>
   );
