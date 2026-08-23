@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/voor-scholen")({
   head: () => ({
