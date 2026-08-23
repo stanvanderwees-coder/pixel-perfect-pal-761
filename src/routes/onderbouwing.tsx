@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/onderbouwing")({
   head: () => ({
