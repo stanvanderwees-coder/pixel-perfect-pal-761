@@ -75,9 +75,11 @@ function Prijzen() {
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
         <div className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
-          {plans.map((p) => (
-            <div
+          {plans.map((p, i) => (
+            <Reveal
               key={p.name}
+              delay={i * 110}
+              hover="lift"
               className={`flex flex-col px-7 py-10 ${p.highlight ? "band-ink" : "bg-card"}`}
             >
               <p
@@ -113,7 +115,7 @@ function Prijzen() {
               >
                 {p.cta.label} <ArrowRight className="size-4" />
               </Link>
-            </div>
+            </Reveal>
           ))}
         </div>
         <p className="mt-8 text-xs text-muted-foreground">
