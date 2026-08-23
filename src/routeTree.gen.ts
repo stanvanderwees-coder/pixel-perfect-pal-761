@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as OnderbouwingRouteImport } from './routes/onderbouwing'
+import { Route as PrijzenRouteImport } from './routes/prijzen'
+import { Route as VoorLeerlingenRouteImport } from './routes/voor-leerlingen'
+import { Route as VoorScholenRouteImport } from './routes/voor-scholen'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnderbouwingRoute = OnderbouwingRouteImport.update({
+  id: '/onderbouwing',
+  path: '/onderbouwing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrijzenRoute = PrijzenRouteImport.update({
+  id: '/prijzen',
+  path: '/prijzen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoorLeerlingenRoute = VoorLeerlingenRouteImport.update({
+  id: '/voor-leerlingen',
+  path: '/voor-leerlingen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoorScholenRoute = VoorScholenRouteImport.update({
+  id: '/voor-scholen',
+  path: '/voor-scholen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/onderbouwing': typeof OnderbouwingRoute
+  '/prijzen': typeof PrijzenRoute
+  '/voor-leerlingen': typeof VoorLeerlingenRoute
+  '/voor-scholen': typeof VoorScholenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/onderbouwing': typeof OnderbouwingRoute
+  '/prijzen': typeof PrijzenRoute
+  '/voor-leerlingen': typeof VoorLeerlingenRoute
+  '/voor-scholen': typeof VoorScholenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/onderbouwing': typeof OnderbouwingRoute
+  '/prijzen': typeof PrijzenRoute
+  '/voor-leerlingen': typeof VoorLeerlingenRoute
+  '/voor-scholen': typeof VoorScholenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/onderbouwing'
+    | '/prijzen'
+    | '/voor-leerlingen'
+    | '/voor-scholen'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contact'
+    | '/onderbouwing'
+    | '/prijzen'
+    | '/voor-leerlingen'
+    | '/voor-scholen'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/onderbouwing'
+    | '/prijzen'
+    | '/voor-leerlingen'
+    | '/voor-scholen'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
+  OnderbouwingRoute: typeof OnderbouwingRoute
+  PrijzenRoute: typeof PrijzenRoute
+  VoorLeerlingenRoute: typeof VoorLeerlingenRoute
+  VoorScholenRoute: typeof VoorScholenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onderbouwing': {
+      id: '/onderbouwing'
+      path: '/onderbouwing'
+      fullPath: '/onderbouwing'
+      preLoaderRoute: typeof OnderbouwingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prijzen': {
+      id: '/prijzen'
+      path: '/prijzen'
+      fullPath: '/prijzen'
+      preLoaderRoute: typeof PrijzenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voor-leerlingen': {
+      id: '/voor-leerlingen'
+      path: '/voor-leerlingen'
+      fullPath: '/voor-leerlingen'
+      preLoaderRoute: typeof VoorLeerlingenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voor-scholen': {
+      id: '/voor-scholen'
+      path: '/voor-scholen'
+      fullPath: '/voor-scholen'
+      preLoaderRoute: typeof VoorScholenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
+  OnderbouwingRoute: OnderbouwingRoute,
+  PrijzenRoute: PrijzenRoute,
+  VoorLeerlingenRoute: VoorLeerlingenRoute,
+  VoorScholenRoute: VoorScholenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
