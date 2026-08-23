@@ -90,11 +90,11 @@ function VoorLeerlingen() {
           <p className="eyebrow text-teal">Vragen</p>
           <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Dit vragen leerlingen ons</h2>
           <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
-            {vragen.map((v) => (
-              <div key={v.q}>
+            {vragen.map((v, i) => (
+              <Reveal key={v.q} delay={i * 80} hover="lift" className="bg-card border border-border rounded-sm p-5">
                 <h3 className="text-base font-semibold">{v.q}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.a}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
