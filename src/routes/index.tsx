@@ -105,7 +105,7 @@ function Home() {
       {/* Twee ingangen */}
       <section className="band-sand">
         <div className="mx-auto grid max-w-6xl gap-px overflow-hidden border-y border-border bg-border md:grid-cols-2">
-          <div className="bg-card px-6 py-12 sm:px-10">
+          <Reveal hover="lift" className="bg-card px-6 py-12 sm:px-10">
             <GraduationCap className="size-6 text-teal" />
             <h2 className="mt-6 text-2xl font-semibold">Ik ben scholier</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -118,8 +118,8 @@ function Home() {
             >
               Wat het je oplevert <ArrowRight className="size-4" />
             </Link>
-          </div>
-          <div className="bg-card px-6 py-12 sm:px-10">
+          </Reveal>
+          <Reveal hover="lift" delay={120} className="bg-card px-6 py-12 sm:px-10">
             <School className="size-6 text-teal" />
             <h2 className="mt-6 text-2xl font-semibold">Ik ben decaan of school</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -132,7 +132,7 @@ function Home() {
             >
               Voor scholen <ArrowRight className="size-4" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
