@@ -144,14 +144,14 @@ function Home() {
         </h2>
         <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <li key={s.title} className="border-t-2 border-ink pt-6">
+            <Reveal as="li" key={s.title} delay={i * 100} className="border-t-2 border-ink pt-6">
               <div className="flex items-center justify-between">
                 <s.icon className="size-5 text-teal" />
                 <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
               </div>
               <h3 className="mt-5 text-lg font-semibold leading-snug">{s.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </section>
