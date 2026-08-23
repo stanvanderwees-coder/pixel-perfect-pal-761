@@ -79,11 +79,11 @@ function Onderbouwing() {
                 "Geen opslag",
                 "Gesprekken worden niet bewaard en niet gebruikt om modellen te trainen.",
               ],
-            ].map(([t, b]) => (
-              <div key={t} className="border-t border-ink-foreground/25 pt-6">
+            ].map(([t, b], i) => (
+              <Reveal key={t} delay={i * 90} className="border-t border-ink-foreground/25 pt-6">
                 <h3 className="font-display text-base font-semibold">{t}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-foreground/70">{b}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
