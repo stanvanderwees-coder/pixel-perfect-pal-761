@@ -9,6 +9,7 @@ import {
   School,
 } from "lucide-react";
 import heroStudent from "@/assets/hero-student.jpg";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
