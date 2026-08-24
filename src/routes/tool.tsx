@@ -11,9 +11,15 @@ import {
   Layers,
   RotateCcw,
   GraduationCap,
+  Compass,
+  Lightbulb,
+  Eye,
+  PenLine,
+  School,
 } from "lucide-react";
 import toolPaths from "@/assets/tool-paths.jpg";
 import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/tool")({
   head: () => ({
