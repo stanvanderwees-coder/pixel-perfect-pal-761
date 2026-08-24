@@ -264,13 +264,31 @@ function ToolPage() {
       </section>
 
       {/* Flow */}
-      <section className="band-sand hairline">
-        <div className="mx-auto max-w-3xl px-5 py-14 lg:px-8 lg:py-20">
+      <section className="band-sand hairline relative overflow-hidden">
+        <div className="grid-dots pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
+        <div className="relative mx-auto max-w-3xl px-5 py-14 lg:px-8 lg:py-20">
           {/* Progress */}
           <div className="flex items-center gap-4">
-            <div className="h-1 flex-1 overflow-hidden rounded-full bg-border">
+            <div className="flex items-center gap-1.5">
+              {Array.from({ length: totalSteps }).map((_, i) => (
+                <span
+                  key={i}
+                  aria-hidden="true"
+                  className={`grid size-6 place-items-center rounded-full font-display text-[0.65rem] font-bold transition-colors duration-300 ${
+                    i < step
+                      ? "bg-teal text-primary-foreground"
+                      : i === step
+                        ? "bg-ink text-ink-foreground ring-4 ring-teal/20"
+                        : "border border-border bg-background text-muted-foreground"
+                  }`}
+                >
+                  {i < step ? <Check className="size-3" /> : i + 1}
+                </span>
+              ))}
+            </div>
+            <div className="h-1 flex-1 overflow-hidden rounded-full bg-border/80">
               <div
-                className="h-full rounded-full bg-teal transition-[width] duration-500 ease-out"
+                className="h-full rounded-full bg-gradient-to-r from-deep via-teal to-mint transition-[width] duration-500 ease-out"
                 style={{ width: `${Math.max(progress, 4)}%` }}
               />
             </div>
@@ -279,29 +297,46 @@ function ToolPage() {
             </span>
           </div>
 
-          <div className="mt-8 rounded-lg border border-border bg-card p-6 shadow-[var(--shadow-lift)] sm:p-9">
+          <div className="mt-8 rounded-xl border border-border/70 bg-card/90 p-6 shadow-[var(--shadow-panel)] backdrop-blur-sm sm:p-9">
             {step === 0 && (
-              <div key="s0" data-reveal="" className="is-visible">
-                <h2 className="font-display text-2xl font-semibold">Waar begin je?</h2>
+              <div key="s0" className="tool-card-in">
+                <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-deep">
+                  <Compass className="size-3.5" /> Stap 1
+                </span>
+                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
+                  Waar begin je?
+                </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Twee vragen, dan gaan we swipen.
                 </p>
 
                 <p className="mt-8 font-display text-sm font-semibold">Welk niveau zit je?</p>
-                <div className="mt-3 flex flex-wrap gap-3">
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
                   {(["havo", "vwo"] as const).map((l) => (
                     <button
                       key={l}
                       type="button"
                       onClick={() => setLevel(l)}
                       aria-pressed={level === l}
-                      className={`rounded-sm border px-5 py-2.5 font-display text-sm font-semibold transition-colors ${
+                      className={`group flex items-center gap-3 rounded-lg border px-5 py-4 text-left font-display text-base font-semibold uppercase tracking-[0.08em] transition-all duration-200 ${
                         level === l
-                          ? "border-teal bg-teal text-primary-foreground"
-                          : "border-border bg-background hover:border-teal/60"
+                          ? "border-teal bg-gradient-to-br from-deep to-ink text-ink-foreground shadow-[var(--shadow-lift)]"
+                          : "border-border bg-background hover:-translate-y-0.5 hover:border-teal/60 hover:shadow-[var(--shadow-lift)]"
                       }`}
                     >
+                      <School
+                        className={`size-5 ${level === l ? "text-mint" : "text-teal"}`}
+                      />
                       {l}
+                      <span
+                        className={`ml-auto grid size-5 place-items-center rounded-full border transition-colors ${
+                          level === l
+                            ? "border-mint bg-mint text-ink"
+                            : "border-border text-transparent"
+                        }`}
+                      >
+                        <Check className="size-3" />
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -327,19 +362,27 @@ function ToolPage() {
                       type="button"
                       onClick={() => setStance(o.id)}
                       aria-pressed={stance === o.id}
-                      className={`rounded-sm border p-4 text-left transition-colors ${
+                      className={`relative overflow-hidden rounded-lg border p-5 text-left transition-all duration-200 ${
                         stance === o.id
-                          ? "border-teal bg-teal/10"
-                          : "border-border bg-background hover:border-teal/60"
+                          ? "border-teal bg-teal/10 shadow-[var(--shadow-lift)]"
+                          : "border-border bg-background hover:-translate-y-0.5 hover:border-teal/60 hover:shadow-[var(--shadow-lift)]"
                       }`}
                     >
+                      <span
+                        aria-hidden="true"
+                        className={`absolute inset-y-0 left-0 w-1 transition-colors ${
+                          stance === o.id ? "bg-teal" : "bg-transparent"
+                        }`}
+                      />
                       <span className="font-display text-sm font-semibold">{o.title}</span>
-                      <span className="mt-1 block text-sm text-muted-foreground">{o.body}</span>
+                      <span className="mt-1.5 block text-sm leading-relaxed text-muted-foreground">
+                        {o.body}
+                      </span>
                     </button>
                   ))}
                 </div>
 
-                <div className="mt-9 flex flex-wrap items-center gap-4">
+                <div className="mt-9 flex flex-wrap items-center gap-4 border-t border-border pt-7">
                   <button
                     type="button"
                     disabled={!level || !stance}
@@ -349,7 +392,7 @@ function ToolPage() {
                     Beginnen
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
                   </button>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">
                     <strong className="font-semibold text-foreground">
                       Geen account, niets wordt opgeslagen.
                     </strong>{" "}
@@ -362,7 +405,14 @@ function ToolPage() {
             {step === 1 && (
               <div>
                 <div className="flex items-center justify-between gap-4">
-                  <h2 className="font-display text-2xl font-semibold">Wat spreekt je aan?</h2>
+                  <div>
+                    <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-deep">
+                      <Sparkles className="size-3.5" /> Stap 2
+                    </span>
+                    <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
+                      Wat spreekt je aan?
+                    </h2>
+                  </div>
                   <span className="font-display text-xs font-semibold text-muted-foreground">
                     {index + 1} / {cards.length}
                   </span>
@@ -371,34 +421,68 @@ function ToolPage() {
                   Activiteiten, geen studienamen. Ga op gevoel.
                 </p>
 
-                <div
-                  key={index}
-                  data-reveal=""
-                  className="is-visible mt-7 rounded-md border border-border bg-gradient-to-br from-sand to-card p-7 sm:p-9"
-                >
-                  <Sparkles className="size-5 text-teal" />
-                  <p className="mt-4 font-display text-xl font-semibold leading-snug sm:text-2xl">
-                    {cards[index]?.text}
-                  </p>
-                  <p className="mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                    {cards[index]?.hint}
-                  </p>
+                {/* Card deck */}
+                <div className="relative mt-8">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-6 -top-3 h-full rounded-2xl border border-border/70 bg-card/60"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-3 -top-1.5 h-full rounded-2xl border border-border bg-card/80"
+                  />
+                  <div
+                    key={index}
+                    className="tool-card-in glow-teal relative overflow-hidden rounded-2xl border border-ink/20 bg-gradient-to-br from-ink via-deep to-ink p-7 text-ink-foreground sm:p-10"
+                  >
+                    <img
+                      src={toolPaths}
+                      alt=""
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 size-full object-cover opacity-20"
+                    />
+                    <div className="relative">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-ink-foreground/10 px-3 py-1 font-display text-[0.7rem] font-semibold text-mint">
+                        <Sparkles className="size-3.5" /> {index + 1} / {cards.length}
+                      </span>
+                      <p className="mt-5 font-display text-xl font-semibold leading-snug sm:text-2xl">
+                        {cards[index]?.text}
+                      </p>
+                      <p className="mt-4 text-xs uppercase tracking-[0.16em] text-mint/80">
+                        {cards[index]?.hint}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-7 flex gap-3">
+                {/* Deck position dots */}
+                <div className="mt-5 flex justify-center gap-1.5" aria-hidden="true">
+                  {cards.map((c, i) => (
+                    <span
+                      key={c.text}
+                      className={`h-1 rounded-full transition-all duration-300 ${
+                        i === index ? "w-6 bg-teal" : i < index ? "w-2 bg-teal/40" : "w-2 bg-border"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="mt-6 flex gap-3">
                   <button
                     type="button"
                     onClick={() => swipe(false)}
-                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-sm border border-border bg-background px-5 py-3 font-display text-sm font-semibold transition-colors hover:border-foreground/40"
+                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 py-4 font-display text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-[var(--shadow-lift)]"
                   >
-                    <X className="size-4" /> Niks voor mij
+                    <X className="size-4 transition-transform group-hover:-rotate-12" /> Niks voor
+                    mij
                   </button>
                   <button
                     type="button"
                     onClick={() => swipe(true)}
-                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-sm bg-teal px-5 py-3 font-display text-sm font-semibold text-primary-foreground transition-colors hover:bg-deep"
+                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-teal to-deep px-5 py-4 font-display text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]"
                   >
-                    <Check className="size-4" /> Dit trekt me
+                    <Check className="size-4 transition-transform group-hover:scale-110" /> Dit
+                    trekt me
                   </button>
                 </div>
 
@@ -413,20 +497,27 @@ function ToolPage() {
             )}
 
             {step === 2 && (
-              <div data-reveal="" className="is-visible">
-                <h2 className="font-display text-2xl font-semibold">Even doorvragen</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <div className="tool-card-in">
+                <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-deep">
+                  <PenLine className="size-3.5" /> Stap 3
+                </span>
+                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
+                  Even doorvragen
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
                   {ranking[0]
                     ? `Je koos vooral richting ${(domainLabels[ranking[0]![0]] ?? "").toLowerCase()}. Wat trok je daarin?`
                     : "Je liet bijna alles liggen. Wat maakte dat niets klikte?"}
                 </p>
-                <textarea
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  rows={5}
-                  placeholder="Typ in je eigen woorden — één of twee zinnen is genoeg."
-                  className="mt-6 w-full rounded-sm border border-input bg-background p-4 text-sm outline-none transition-colors focus:border-teal"
-                />
+                <div className="mt-6 rounded-xl border border-border bg-gradient-to-br from-sand to-card p-2">
+                  <textarea
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    rows={5}
+                    placeholder="Typ in je eigen woorden — één of twee zinnen is genoeg."
+                    className="w-full resize-none rounded-lg border border-input bg-background p-4 text-sm leading-relaxed outline-none transition-colors focus:border-teal focus:ring-4 focus:ring-teal/15"
+                  />
+                </div>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <button
                     type="button"
@@ -448,22 +539,37 @@ function ToolPage() {
             )}
 
             {step === 3 && (
-              <div>
-                <h2 className="font-display text-2xl font-semibold">Dit past bij je</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
+              <div className="tool-card-in">
+                <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-deep">
+                  <GraduationCap className="size-3.5" /> Stap 4
+                </span>
+                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
+                  Dit past bij je
+                </h2>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
                   Op basis van je swipes{level ? ` en je ${level}-niveau` : ""} — met uitleg waarom,
                   en hoe de studie er écht uitziet.
                 </p>
 
                 {ranking.length > 0 && (
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-7 space-y-2.5 rounded-xl border border-border bg-sand/60 p-5">
                     {ranking.slice(0, 3).map(([d, n]) => (
-                      <span
-                        key={d}
-                        className="rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-xs font-semibold text-deep"
-                      >
-                        {domainLabels[d]} · {n}x
-                      </span>
+                      <div key={d} className="flex items-center gap-3">
+                        <span className="w-44 shrink-0 font-display text-xs font-semibold">
+                          {domainLabels[d]}
+                        </span>
+                        <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-border">
+                          <span
+                            className="block h-full rounded-full bg-gradient-to-r from-deep to-mint"
+                            style={{
+                              width: `${Math.round((n / (ranking[0]?.[1] ?? 1)) * 100)}%`,
+                            }}
+                          />
+                        </span>
+                        <span className="w-8 shrink-0 text-right font-display text-xs font-semibold text-muted-foreground">
+                          {n}x
+                        </span>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -474,27 +580,42 @@ function ToolPage() {
                       key={s.name}
                       delay={i * 70}
                       hover="lift"
-                      className="rounded-md border border-border bg-background p-5"
+                      className="group relative overflow-hidden rounded-xl border border-border bg-background p-5 sm:p-6"
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="font-display text-lg font-semibold">{s.name}</h3>
-                        <span className="shrink-0 rounded-sm bg-secondary px-2 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-secondary-foreground">
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-teal to-mint"
+                      />
+                      <div className="flex items-start justify-between gap-4 pl-2">
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-ink font-display text-xs font-bold text-ink-foreground">
+                            {i + 1}
+                          </span>
+                          <h3 className="font-display text-lg font-semibold">{s.name}</h3>
+                        </div>
+                        <span className="shrink-0 rounded-full bg-secondary px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-secondary-foreground">
                           {s.type}
                         </span>
                       </div>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                        <strong className="font-semibold text-foreground">Waarom: </strong>
-                        {s.why}
-                      </p>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                        <strong className="font-semibold text-foreground">Echt zo: </strong>
-                        {s.reality}
-                      </p>
+                      <div className="mt-4 grid gap-3 pl-2 sm:grid-cols-2">
+                        <p className="rounded-lg bg-sand/70 p-3.5 text-sm leading-relaxed text-muted-foreground">
+                          <strong className="mb-1 flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-[0.12em] text-foreground">
+                            <Lightbulb className="size-3.5 text-teal" /> Waarom
+                          </strong>
+                          {s.why}
+                        </p>
+                        <p className="rounded-lg bg-sand/70 p-3.5 text-sm leading-relaxed text-muted-foreground">
+                          <strong className="mb-1 flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-[0.12em] text-foreground">
+                            <Eye className="size-3.5 text-teal" /> Echt zo
+                          </strong>
+                          {s.reality}
+                        </p>
+                      </div>
                     </Reveal>
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap gap-3 border-t border-border pt-7">
                   <button
                     type="button"
                     onClick={reset}
@@ -519,6 +640,7 @@ function ToolPage() {
           </p>
         </div>
       </section>
+
     </>
   );
 }
