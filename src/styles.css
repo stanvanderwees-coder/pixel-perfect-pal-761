@@ -255,3 +255,38 @@
 .mobile-menu-enter {
   animation: mobile-menu-in 0.22s ease-out both;
 }
+
+/* ---- Studiekeuzetool ---- */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tool-card-in {
+  animation: card-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-card-in {
+    animation: none;
+  }
+}
+
+/* Faint dotted grid used behind the tool panel */
+@utility grid-dots {
+  background-image: radial-gradient(oklch(0.6 0.078 213 / 0.16) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Soft teal glow halo */
+@utility glow-teal {
+  box-shadow:
+    0 0 0 1px oklch(0.6 0.078 213 / 0.22),
+    0 24px 60px -30px oklch(0.6 0.078 213 / 0.55);
+}
