@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as OnderbouwingRouteImport } from './routes/onderbouwing'
 import { Route as PrijzenRouteImport } from './routes/prijzen'
+import { Route as ToolRouteImport } from './routes/tool'
 import { Route as VoorLeerlingenRouteImport } from './routes/voor-leerlingen'
 import { Route as VoorScholenRouteImport } from './routes/voor-scholen'
 
@@ -36,6 +37,11 @@ const PrijzenRoute = PrijzenRouteImport.update({
   path: '/prijzen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolRoute = ToolRouteImport.update({
+  id: '/tool',
+  path: '/tool',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VoorLeerlingenRoute = VoorLeerlingenRouteImport.update({
   id: '/voor-leerlingen',
   path: '/voor-leerlingen',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/onderbouwing': typeof OnderbouwingRoute
   '/prijzen': typeof PrijzenRoute
+  '/tool': typeof ToolRoute
   '/voor-leerlingen': typeof VoorLeerlingenRoute
   '/voor-scholen': typeof VoorScholenRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/onderbouwing': typeof OnderbouwingRoute
   '/prijzen': typeof PrijzenRoute
+  '/tool': typeof ToolRoute
   '/voor-leerlingen': typeof VoorLeerlingenRoute
   '/voor-scholen': typeof VoorScholenRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/onderbouwing': typeof OnderbouwingRoute
   '/prijzen': typeof PrijzenRoute
+  '/tool': typeof ToolRoute
   '/voor-leerlingen': typeof VoorLeerlingenRoute
   '/voor-scholen': typeof VoorScholenRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/onderbouwing'
     | '/prijzen'
+    | '/tool'
     | '/voor-leerlingen'
     | '/voor-scholen'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/onderbouwing'
     | '/prijzen'
+    | '/tool'
     | '/voor-leerlingen'
     | '/voor-scholen'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/onderbouwing'
     | '/prijzen'
+    | '/tool'
     | '/voor-leerlingen'
     | '/voor-scholen'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   OnderbouwingRoute: typeof OnderbouwingRoute
   PrijzenRoute: typeof PrijzenRoute
+  ToolRoute: typeof ToolRoute
   VoorLeerlingenRoute: typeof VoorLeerlingenRoute
   VoorScholenRoute: typeof VoorScholenRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrijzenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tool': {
+      id: '/tool'
+      path: '/tool'
+      fullPath: '/tool'
+      preLoaderRoute: typeof ToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/voor-leerlingen': {
       id: '/voor-leerlingen'
       path: '/voor-leerlingen'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   OnderbouwingRoute: OnderbouwingRoute,
   PrijzenRoute: PrijzenRoute,
+  ToolRoute: ToolRoute,
   VoorLeerlingenRoute: VoorLeerlingenRoute,
   VoorScholenRoute: VoorScholenRoute,
 }
