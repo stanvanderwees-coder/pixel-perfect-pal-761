@@ -72,7 +72,7 @@ function Home() {
             </p>
             <div className="mt-9">
               <Link
-                to="/voor-leerlingen"
+                to="/tool"
                 className="group inline-flex items-center gap-2 rounded-sm bg-mint px-6 py-3.5 font-display text-sm font-semibold text-ink transition-colors hover:bg-ink-foreground"
               >
                 Start de tool
