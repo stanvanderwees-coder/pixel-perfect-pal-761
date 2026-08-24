@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, Compass } from "lucide-react";
 
 const links = [
+  { to: "/tool", label: "De tool" },
   { to: "/voor-leerlingen", label: "Voor leerlingen" },
   { to: "/voor-scholen", label: "Voor scholen" },
   { to: "/onderbouwing", label: "Onderbouwing" },
@@ -39,7 +40,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            to="/voor-leerlingen"
+            to="/tool"
             className="hidden rounded-sm bg-ink px-4 py-2 text-sm font-medium text-ink-foreground transition-colors hover:bg-deep md:inline-flex"
           >
             Start de tool
@@ -69,7 +70,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              to="/voor-leerlingen"
+              to="/tool"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-sm bg-ink px-4 py-2.5 text-center text-sm font-medium text-ink-foreground"
             >
