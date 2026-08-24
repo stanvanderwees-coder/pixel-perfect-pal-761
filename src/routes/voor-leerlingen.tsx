@@ -10,7 +10,7 @@ export const Route = createFileRoute("/voor-leerlingen")({
       {
         name: "description",
         content:
-          "Een gesprek van acht minuten voor havo- en vwo-leerlingen: swipe op activiteiten, praat met je gids en krijg studies met uitleg. Gratis, zonder account.",
+          "Een gesprek van acht minuten voor havo- en vwo-leerlingen: herkenbare situaties, doorvragen en studies met uitleg. Gratis, zonder account.",
       },
       { property: "og:title", content: "Voor leerlingen — ontdek welke studie bij je past" },
       {
@@ -18,6 +18,8 @@ export const Route = createFileRoute("/voor-leerlingen")({
         content:
           "Geen test met een uitslag, maar een gesprek dat doorvraagt op waaróm iets je aanspreekt.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: VoorLeerlingen,
@@ -40,12 +42,20 @@ const vragen = [
     a: "Nee. Je krijgt meerdere richtingen met uitleg, zodat je zelf kunt afwegen.",
   },
   {
-    q: "Hoe weet ik dat de informatie klopt?",
-    a: "Alle feiten komen uit onze eigen dataset van 150 Nederlandse hbo- en wo-studies.",
+    q: "Kan ik op de informatie vertrouwen?",
+    a: "Gebruik het als startpunt. De gegevens komen uit onze eigen, samengestelde dataset. Toelatingseisen, numerus fixus en baankansen zijn indicatief en verschillen per opleiding en per jaar — check ze altijd zelf op Studiekeuze123.",
+  },
+  {
+    q: "Waarom een gesprek en geen vragenlijst?",
+    a: "Omdat nadenken over jezelf het best werkt als het over echte situaties gaat, niet over abstracte vragen over wie je bent. Daarom praten we over situaties die je herkent.",
   },
   {
     q: "Hoe lang duurt het?",
     a: "Ongeveer acht minuten, verdeeld over vier korte stappen.",
+  },
+  {
+    q: "Ik gebruik ChatGPT al, wat voegt dit toe?",
+    a: "Bijna de helft van de bovenbouwscholieren gebruikt AI al bij de studiekeuze (Qompas, januari 2026). Handig, maar Qompas ziet zelf dat die informatie te wensen overlaat. Deze tool vraagt door en legt uit waarom een richting bij je past.",
   },
 ];
 
@@ -58,7 +68,7 @@ function VoorLeerlingen() {
         intro="Je hoeft alleen te weten wat je aanspreekt. Daar begint het gesprek, en daar bouwen we een beeld mee op van studies die bij je passen."
       >
         <Link
-          to="/"
+          to="/tool"
           className="group inline-flex items-center gap-2 rounded-sm bg-mint px-6 py-3.5 font-display text-sm font-semibold text-ink transition-colors hover:bg-ink-foreground"
         >
           Start de tool
@@ -76,7 +86,12 @@ function VoorLeerlingen() {
           </div>
           <ul className="space-y-6">
             {opbrengst.map((o, i) => (
-              <Reveal as="li" key={o} delay={i * 90} className="hairline flex gap-4 pt-6 first:border-none first:pt-0">
+              <Reveal
+                as="li"
+                key={o}
+                delay={i * 90}
+                className="hairline flex gap-4 pt-6 first:border-none first:pt-0"
+              >
                 <Check className="mt-0.5 size-4 shrink-0 text-teal" />
                 <span className="text-sm leading-relaxed text-muted-foreground">{o}</span>
               </Reveal>
@@ -87,23 +102,44 @@ function VoorLeerlingen() {
 
       <section className="border-y border-border band-sand">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-          <p className="eyebrow text-teal">Vragen</p>
-          <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Dit vragen leerlingen ons</h2>
-          <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
-            {vragen.map((v, i) => (
-              <Reveal key={v.q} delay={i * 80} hover="lift" className="bg-card border border-border rounded-sm p-5">
-                <h3 className="text-base font-semibold">{v.q}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.a}</p>
-              </Reveal>
-            ))}
-          </div>
+          <p className="eyebrow text-teal">Je bent niet de enige die twijfelt</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
+            Ongeveer 32% van de eerstejaars stopt of switcht in het eerste jaar.
+          </h2>
+          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Dat zijn zo'n 42.500 studenten per jaar. Wat ze zelf als reden noemen: "de verwachting
+            kwam niet uit" (51%) en "ik heb de verkeerde studiekeuze gemaakt" (50%). Deze tool is
+            gemaakt om je te helpen bij een betere, beter geïnformeerde keuze — geen garantie, wel
+            een eerlijker beeld van waar je aan begint.
+          </p>
+          <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">
+            Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+        <p className="eyebrow text-teal">Vragen</p>
+        <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Dit vragen leerlingen ons</h2>
+        <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
+          {vragen.map((v, i) => (
+            <Reveal
+              key={v.q}
+              delay={i * 80}
+              hover="lift"
+              className="rounded-sm border border-border bg-card p-5"
+            >
+              <h3 className="text-base font-semibold">{v.q}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.a}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       <section className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <h2 className="text-2xl font-semibold sm:text-3xl">Acht minuten, en je weet meer.</h2>
         <Link
-          to="/"
+          to="/tool"
           className="inline-flex items-center gap-2 rounded-sm bg-ink px-6 py-3.5 font-display text-sm font-semibold text-ink-foreground transition-colors hover:bg-deep"
         >
           Start de tool <ArrowRight className="size-4" />
