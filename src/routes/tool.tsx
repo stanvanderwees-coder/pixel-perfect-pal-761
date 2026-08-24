@@ -207,7 +207,8 @@ function ToolPage() {
   }, [ranking, level]);
 
   function swipe(keep: boolean) {
-    if (keep) setLiked((v) => [...v, cards[index].domain]);
+    const d = cards[index]?.domain;
+    if (keep && d) setLiked((v) => [...v, d]);
     if (index + 1 >= cards.length) setStep(2);
     else setIndex((i) => i + 1);
   }
@@ -371,10 +372,10 @@ function ToolPage() {
                 >
                   <Sparkles className="size-5 text-teal" />
                   <p className="mt-4 font-display text-xl font-semibold leading-snug sm:text-2xl">
-                    {cards[index].text}
+                    {cards[index]?.text}
                   </p>
                   <p className="mt-3 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                    {cards[index].hint}
+                    {cards[index]?.hint}
                   </p>
                 </div>
 
@@ -409,8 +410,8 @@ function ToolPage() {
               <div data-reveal="" className="is-visible">
                 <h2 className="font-display text-2xl font-semibold">Even doorvragen</h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  {ranking.length > 0
-                    ? `Je koos vooral richting ${domainLabels[ranking[0][0]].toLowerCase()}. Wat trok je daarin?`
+                  {ranking[0]
+                    ? `Je koos vooral richting ${(domainLabels[ranking[0]![0]] ?? "").toLowerCase()}. Wat trok je daarin?`
                     : "Je liet bijna alles liggen. Wat maakte dat niets klikte?"}
                 </p>
                 <textarea
