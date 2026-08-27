@@ -290,3 +290,102 @@
     0 0 0 1px oklch(0.6 0.078 213 / 0.22),
     0 24px 60px -30px oklch(0.6 0.078 213 / 0.55);
 }
+
+/* ---- Futuristic tool shell ---- */
+@utility tool-shell {
+  background:
+    radial-gradient(60rem 40rem at 12% 0%, oklch(0.38 0.078 243 / 0.55), transparent 65%),
+    radial-gradient(50rem 34rem at 92% 18%, oklch(0.6 0.078 213 / 0.4), transparent 62%),
+    radial-gradient(46rem 34rem at 50% 108%, oklch(0.76 0.075 180 / 0.28), transparent 60%),
+    oklch(0.16 0.045 253);
+  color: var(--color-ink-foreground);
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, oklch(0.76 0.075 180 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.76 0.075 180 / 0.07) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(70% 60% at 50% 30%, black, transparent 100%);
+}
+
+/* Glass panel on the dark shell */
+@utility glass-panel {
+  background: linear-gradient(
+    160deg,
+    oklch(1 0 0 / 0.09),
+    oklch(1 0 0 / 0.03) 45%,
+    oklch(0.6 0.078 213 / 0.08)
+  );
+  border: 1px solid oklch(1 0 0 / 0.14);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.14),
+    0 40px 90px -50px oklch(0 0 0 / 0.9);
+}
+
+@utility neon-text {
+  color: var(--color-mint);
+  text-shadow: 0 0 26px oklch(0.76 0.075 180 / 0.55);
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 6%, 0) scale(1.15);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: aurora-drift 18s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.76 0.075 180 / 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 10px oklch(0.76 0.075 180 / 0);
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes scan-sweep {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(320%);
+  }
+}
+
+.scan-sweep::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent, oklch(0.76 0.075 180 / 0.16), transparent);
+  animation: scan-sweep 4.5s linear infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .pulse-ring,
+  .scan-sweep::after {
+    animation: none;
+  }
+}
