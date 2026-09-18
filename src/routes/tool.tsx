@@ -17,7 +17,7 @@ import {
   PenLine,
   School,
 } from "lucide-react";
-import toolOrb from "@/assets/tool-ai-orb.jpg";
+import toolOrb from "@/assets/tool-reef-hero.jpg";
 import { Reveal } from "@/components/reveal";
 
 
