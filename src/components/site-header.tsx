@@ -21,7 +21,7 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-2.5">
           <img src={logoMark} alt="" className="h-10 w-auto" />
           <span className="font-display text-lg font-semibold tracking-tight">
-            <span className="text-navy">Study</span>
+            <span className="text-ink">Study</span>
             <span className="text-coral">Fit</span>
             <span className="text-teal">.AI</span>
           </span>
