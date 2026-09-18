@@ -33,7 +33,7 @@ const plans = [
       "Overzicht om mee te nemen naar de decaan",
       "Geen opslag van je gesprek",
     ],
-    cta: { label: "Start de tool", to: "/" as const },
+    cta: { label: "Start de tool", to: "/tool" as const },
     highlight: false,
   },
   {
@@ -74,22 +74,24 @@ function Prijzen() {
       />
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-        <div className="grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-3">
           {plans.map((p, i) => (
             <Reveal
               key={p.name}
               delay={i * 110}
               hover="lift"
-              className={`flex flex-col px-7 py-10 ${p.highlight ? "band-ink" : "bg-card"}`}
+              className={`flex flex-col rounded-3xl p-8 shadow-lg ${
+                p.highlight
+                  ? "border-2 border-coral bg-coral text-primary-foreground"
+                  : "border border-border bg-card"
+              }`}
             >
-              <p
-                className={`eyebrow ${p.highlight ? "text-mint" : "text-teal"}`}
-              >
-                {p.name}
-              </p>
+              <p className={`eyebrow ${p.highlight ? "text-white/80" : "text-teal"}`}>{p.name}</p>
               <p className="mt-6 font-display text-4xl font-semibold">{p.price}</p>
               <p
-                className={`mt-2 text-xs ${p.highlight ? "text-ink-foreground/60" : "text-muted-foreground"}`}
+                className={`mt-2 text-xs ${
+                  p.highlight ? "text-white/70" : "text-muted-foreground"
+                }`}
               >
                 {p.note}
               </p>
@@ -97,9 +99,11 @@ function Prijzen() {
                 {p.features.map((f) => (
                   <li key={f} className="flex gap-3 text-sm leading-relaxed">
                     <Check
-                      className={`mt-0.5 size-4 shrink-0 ${p.highlight ? "text-mint" : "text-teal"}`}
+                      className={`mt-0.5 size-4 shrink-0 ${
+                        p.highlight ? "text-white" : "text-coral"
+                      }`}
                     />
-                    <span className={p.highlight ? "text-ink-foreground/80" : "text-muted-foreground"}>
+                    <span className={p.highlight ? "text-white/90" : "text-muted-foreground"}>
                       {f}
                     </span>
                   </li>
@@ -107,10 +111,10 @@ function Prijzen() {
               </ul>
               <Link
                 to={p.cta.to}
-                className={`mt-10 inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 font-display text-sm font-semibold transition-colors ${
+                className={`mt-10 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-display text-sm font-semibold transition-transform hover:scale-105 active:scale-95 ${
                   p.highlight
-                    ? "bg-mint text-ink hover:bg-ink-foreground"
-                    : "bg-ink text-ink-foreground hover:bg-deep"
+                    ? "bg-white text-coral shadow-md"
+                    : "bg-coral text-white shadow-md shadow-coral/20"
                 }`}
               >
                 {p.cta.label} <ArrowRight className="size-4" />
