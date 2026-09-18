@@ -1,1 +1,1 @@
-- [ ] Tool: bouw optie 3 als schermvullende Coral Reef AI-ervaring met levende robot links en subtiele futuristische effecten
+- [x] Tool: bouw optie 3 als schermvullende Coral Reef AI-ervaring met levende robot links en subtiele futuristische effecten
