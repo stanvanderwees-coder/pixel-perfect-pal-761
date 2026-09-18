@@ -91,10 +91,10 @@ function Contact() {
             <div>
               <p className="eyebrow text-teal">Direct mailen</p>
               <a
-                href="mailto:hallo@studiekeuze.nl"
+                href="mailto:hallo@studyfit.ai"
                 className="mt-3 inline-flex items-center gap-2 font-display text-base font-semibold text-teal hover:text-coral"
               >
-                <Mail className="size-4" /> hallo@studiekeuze.nl
+                <Mail className="size-4" /> hallo@studyfit.ai
               </a>
             </div>
             <div>
