@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Compass } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logoMark from "@/assets/logo-mark.png";
 
 const links = [
   { to: "/tool", label: "De tool" },
@@ -18,11 +19,11 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-            <Compass className="size-4" />
-          </span>
-          <span className="font-display text-[0.95rem] font-semibold tracking-tight">
-            StudyFit.AI
+          <img src={logoMark} alt="" className="h-10 w-auto" />
+          <span className="font-display text-lg font-semibold tracking-tight">
+            <span className="text-ink">Study</span>
+            <span className="text-coral">Fit</span>
+            <span className="text-teal">.AI</span>
           </span>
         </Link>
 
