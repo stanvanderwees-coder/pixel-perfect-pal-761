@@ -14,7 +14,7 @@ export function PageHero({
   return (
     <section className="band-ink">
       <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-        <p className="eyebrow text-mint">{eyebrow}</p>
+        <p className="eyebrow text-coral">{eyebrow}</p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.08] sm:text-5xl">
           {title}
         </h1>
