@@ -1,13 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  ClipboardList,
-  Sparkles,
-  MessageCircle,
-  Search,
-  GraduationCap,
-  School,
-} from "lucide-react";
+import { ArrowRight, GraduationCap, School } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/")({
