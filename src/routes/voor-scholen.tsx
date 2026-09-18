@@ -68,7 +68,7 @@ function VoorScholen() {
       <PageHero
         eyebrow="Voor decanen en scholen"
         title="De leerling komt binnen met richtingen op tafel."
-        intro="Studiekeuze vervangt uw gesprek niet — het bereidt het voor. De leerling heeft al nagedacht en u kunt doorvragen. De tool is ontworpen om bij te dragen aan een betere, beter geïnformeerde keuze."
+        intro="StudyFit.AI vervangt uw gesprek niet — het bereidt het voor. De leerling heeft al nagedacht en u kunt doorvragen. De tool is ontworpen om bij te dragen aan een betere, beter geïnformeerde keuze."
       >
         <Link
           to="/contact"

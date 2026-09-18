@@ -24,13 +24,13 @@ import { Reveal } from "@/components/reveal";
 export const Route = createFileRoute("/tool")({
   head: () => ({
     meta: [
-      { title: "De studiekeuzetool — ontdek welke studie bij je past" },
+      { title: "De StudyFit.AI-tool — ontdek welke studie bij je past" },
       {
         name: "description",
         content:
           "Geen test met een uitslag, maar een korte geleide verkenning van acht minuten. Swipe op activiteiten en zie welke hbo- en wo-studies echt bij je passen.",
       },
-      { property: "og:title", content: "De studiekeuzetool — ontdek welke studie bij je past" },
+      { property: "og:title", content: "De StudyFit.AI-tool — ontdek welke studie bij je past" },
       {
         property: "og:description",
         content:
@@ -253,7 +253,7 @@ function ToolPage() {
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="eyebrow inline-flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1.5 text-mint">
-                <Sparkles className="size-3.5" /> Studiekeuze · havo &amp; vwo
+                <Sparkles className="size-3.5" /> StudyFit.AI · havo &amp; vwo
               </p>
               <h1 className="mt-6 text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">
                 Ontdek welke studie <span className="neon-text">echt bij je past.</span>

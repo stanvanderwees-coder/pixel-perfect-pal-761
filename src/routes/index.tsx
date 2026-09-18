@@ -5,13 +5,13 @@ import { Reveal } from "@/components/reveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Studiekeuze — studiekeuzegesprek voor havo & vwo" },
+      { title: "StudyFit.AI — het gesprek voor havo & vwo" },
       {
         name: "description",
         content:
-          "Bijna een op de drie eerstejaars stopt of switcht. Studiekeuze helpt havo- en vwo-leerlingen hun richting vooraf uitzoeken in een gesprek, niet in een test.",
+          "Bijna een op de drie eerstejaars stopt of switcht. StudyFit.AI helpt havo- en vwo-leerlingen hun richting vooraf uitzoeken in een gesprek, niet in een test.",
       },
-      { property: "og:title", content: "Studiekeuze — studiekeuzegesprek voor havo & vwo" },
+      { property: "og:title", content: "StudyFit.AI — het gesprek voor havo & vwo" },
       {
         property: "og:description",
         content:

@@ -7,16 +7,16 @@ import { PageHero } from "@/components/page-hero";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Studiekeuze voor decanen en scholen" },
+      { title: "Contact — StudyFit.AI voor decanen en scholen" },
       {
         name: "description",
         content:
           "Vragen over inzet in uw LOB-programma, een licentie of de onderbouwing? Stuur ons een bericht en we reageren binnen twee werkdagen.",
       },
-      { property: "og:title", content: "Contact — Studiekeuze" },
+      { property: "og:title", content: "Contact — StudyFit.AI" },
       {
         property: "og:description",
-        content: "Neem contact op over inzet, licenties of de onderbouwing van Studiekeuze.",
+        content: "Neem contact op over inzet, licenties of de onderbouwing van StudyFit.AI.",
       },
     ],
   }),

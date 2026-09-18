@@ -22,7 +22,7 @@ export function SiteHeader() {
             <Compass className="size-4" />
           </span>
           <span className="font-display text-[0.95rem] font-semibold tracking-tight">
-            Studiekeuze
+            StudyFit.AI
           </span>
         </Link>
 
