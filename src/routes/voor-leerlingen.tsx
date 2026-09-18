@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, GraduationCap } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
 
@@ -69,7 +69,7 @@ function VoorLeerlingen() {
       >
         <Link
           to="/tool"
-          className="group inline-flex items-center gap-2 rounded-sm bg-mint px-6 py-3.5 font-display text-sm font-semibold text-ink transition-colors hover:bg-ink-foreground"
+          className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
         >
           Start de tool
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -92,8 +92,8 @@ function VoorLeerlingen() {
                 delay={i * 90}
                 className="hairline flex gap-4 pt-6 first:border-none first:pt-0"
               >
-                <Check className="mt-0.5 size-4 shrink-0 text-teal" />
-                <span className="text-sm leading-relaxed text-muted-foreground">{o}</span>
+                <Check className="mt-0.5 size-5 shrink-0 text-coral" />
+                <span className="leading-relaxed text-muted-foreground">{o}</span>
               </Reveal>
             ))}
           </ul>
@@ -102,32 +102,39 @@ function VoorLeerlingen() {
 
       <section className="border-y border-border band-sand">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-          <p className="eyebrow text-teal">Je bent niet de enige die twijfelt</p>
-          <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
-            Ongeveer 32% van de eerstejaars stopt of switcht in het eerste jaar.
-          </h2>
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Dat zijn zo'n 42.500 studenten per jaar. Wat ze zelf als reden noemen: "de verwachting
-            kwam niet uit" (51%) en "ik heb de verkeerde studiekeuze gemaakt" (50%). Deze tool is
-            gemaakt om je te helpen bij een betere, beter geïnformeerde keuze — geen garantie, wel
-            een eerlijker beeld van waar je aan begint.
-          </p>
-          <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">
-            Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.
-          </p>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="eyebrow text-coral">Je bent niet de enige die twijfelt</p>
+              <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
+                Ongeveer 32% van de eerstejaars stopt of switcht in het eerste jaar.
+              </h2>
+            </div>
+            <div className="space-y-6">
+              <p className="leading-relaxed text-muted-foreground">
+                Dat zijn zo&apos;n 42.500 studenten per jaar. Wat ze zelf als reden noemen:
+                &ldquo;de verwachting kwam niet uit&rdquo; (51%) en &ldquo;ik heb de verkeerde
+                studiekeuze gemaakt&rdquo; (50%). Deze tool is gemaakt om je te helpen bij een
+                betere, beter geïnformeerde keuze — geen garantie, wel een eerlijker beeld van waar
+                je aan begint.
+              </p>
+              <p className="text-xs leading-relaxed text-muted-foreground/80">
+                Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
         <p className="eyebrow text-teal">Vragen</p>
         <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">Dit vragen leerlingen ons</h2>
-        <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
+        <div className="mt-12 grid gap-x-12 gap-y-8 md:grid-cols-2">
           {vragen.map((v, i) => (
             <Reveal
               key={v.q}
               delay={i * 80}
               hover="lift"
-              className="rounded-sm border border-border bg-card p-5"
+              className="rounded-2xl border border-border bg-card p-6 shadow-sm"
             >
               <h3 className="text-base font-semibold">{v.q}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.a}</p>
@@ -136,14 +143,21 @@ function VoorLeerlingen() {
         </div>
       </section>
 
-      <section className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <h2 className="text-2xl font-semibold sm:text-3xl">Acht minuten, en je weet meer.</h2>
-        <Link
-          to="/tool"
-          className="inline-flex items-center gap-2 rounded-sm bg-ink px-6 py-3.5 font-display text-sm font-semibold text-ink-foreground transition-colors hover:bg-deep"
-        >
-          Start de tool <ArrowRight className="size-4" />
-        </Link>
+      <section className="band-ink">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-5 py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-white sm:text-3xl">Acht minuten, en je weet meer.</h2>
+            <p className="mt-3 text-sm text-ink-foreground/70">
+              Geen account, geen huiswerk. Gewoon een gesprek.
+            </p>
+          </div>
+          <Link
+            to="/tool"
+            className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
+          >
+            Start de tool <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
       </section>
     </>
   );
