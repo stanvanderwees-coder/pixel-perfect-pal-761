@@ -303,8 +303,6 @@ function ToolPage() {
 
             <div className="flex-1 overflow-y-auto p-5 sm:p-8 lg:p-10">
               <div className="mx-auto w-full max-w-3xl">
-            <div className="flex items-center gap-1.5">
-              </div>
             {step === 0 && (
               <div key="s0" className="tool-card-in">
                 <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
@@ -641,14 +639,14 @@ function ToolPage() {
                 </div>
               </div>
             )}
-          </div>
-
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je
-            decaan of mentor.
-          </p>
+              </div>
+            </div>
+            <footer className="border-t border-border px-5 py-4 text-center text-xs text-muted-foreground sm:px-8">
+              Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je decaan of mentor.
+            </footer>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
