@@ -24,22 +24,18 @@ export const Route = createFileRoute("/")({
 
 const steps = [
   {
-    icon: ClipboardList,
     title: "Een paar korte vragen",
     body: "Leerjaar, profiel en twee situaties. Klaar in een minuut.",
   },
   {
-    icon: Sparkles,
     title: "Swipen op wat je aanspreekt",
     body: "Concrete activiteiten, geen studienamen. Puur op gevoel.",
   },
   {
-    icon: MessageCircle,
     title: "Een gesprek met je gids",
     body: "Die vraagt door op het waaróm, en bouwt voort op je swipes.",
   },
   {
-    icon: Search,
     title: "Studies met uitleg",
     body: "Wat past, waarom, en hoe die studie er écht uitziet.",
   },
