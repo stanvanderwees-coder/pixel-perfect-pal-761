@@ -8,7 +8,6 @@ import {
   GraduationCap,
   School,
 } from "lucide-react";
-import heroStudent from "@/assets/hero-student.jpg";
 import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/")({
@@ -58,113 +57,128 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="band-ink">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:px-8 lg:py-28">
-          <div>
-            <p className="eyebrow text-mint">Voor havo &amp; vwo</p>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl">
-              Bijna een op de drie eerstejaars <span className="text-mint">stopt of switcht.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-foreground/75 sm:text-lg">
-              Meestal niet omdat ze het niet kunnen, maar omdat de studie iets anders bleek dan
-              gedacht. Wij helpen leerlingen dat vooraf uitzoeken — in een gesprek, niet in een
-              test.
-            </p>
-            <div className="mt-9">
-              <Link
-                to="/tool"
-                className="group inline-flex items-center gap-2 rounded-sm bg-mint px-6 py-3.5 font-display text-sm font-semibold text-ink transition-colors hover:bg-ink-foreground"
-              >
-                Start de tool
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-            <p className="mt-5 text-xs text-ink-foreground/55">
-              Gratis voor leerlingen · geen account · niets opgeslagen
-            </p>
+      <section className="band-ink relative overflow-hidden text-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-5 py-24 lg:px-8 lg:py-32">
+          <p className="eyebrow text-coral">Voor havo &amp; vwo</p>
+          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+            Bijna een op de drie eerstejaars <span className="text-coral">stopt of switcht.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-foreground/80 sm:text-xl">
+            Meestal niet omdat ze het niet kunnen, maar omdat de studie iets anders bleek dan
+            gedacht. Wij helpen leerlingen dat vooraf uitzoeken — in een gesprek, niet in een test.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/tool"
+              className="group inline-flex items-center gap-2 rounded-2xl bg-coral px-8 py-4 font-display text-lg font-semibold text-white shadow-lg shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
+            >
+              Start de tool
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              to="/voor-leerlingen"
+              className="inline-flex items-center gap-2 rounded-2xl border-2 border-mint bg-transparent px-8 py-4 font-display text-lg font-semibold text-mint transition-colors hover:bg-mint hover:text-ink"
+            >
+              Bekijk hoe het werkt
+            </Link>
           </div>
-
-          <div className="relative">
-            <img
-              src={heroStudent}
-              alt="Havoleerling denkt na over haar studiekeuze achter een laptop"
-              width={1280}
-              height={1600}
-              className="aspect-[4/5] w-full rounded-sm object-cover shadow-panel"
-            />
-            <div className="absolute -bottom-6 left-6 right-6 rounded-sm border border-ink-foreground/15 bg-ink/90 p-5 backdrop-blur-sm">
-              <p className="font-display text-3xl font-semibold text-mint">8 min</p>
-              <p className="mt-1 text-xs text-ink-foreground/70">
-                Vier stappen tot een overzicht dat je meeneemt naar je decaan.
-              </p>
-            </div>
-          </div>
+          <p className="mt-6 text-xs text-ink-foreground/60">
+            Gratis voor leerlingen · geen account · niets opgeslagen
+          </p>
         </div>
       </section>
 
       {/* Twee ingangen */}
-      <section className="band-sand">
-        <div className="mx-auto grid max-w-6xl gap-px overflow-hidden border-y border-border bg-border md:grid-cols-2">
-          <Reveal hover="lift" className="bg-card px-6 py-12 sm:px-10">
-            <GraduationCap className="size-6 text-teal" />
-            <h2 className="mt-6 text-2xl font-semibold">Ik ben scholier</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Ontdek in een kort gesprek welke richtingen bij je passen, en hoe die studies er in
-              het echt uitzien. Je houdt er een overzicht aan over dat je meeneemt naar je decaan.
-            </p>
-            <Link
-              to="/voor-leerlingen"
-              className="mt-8 inline-flex items-center gap-2 font-display text-sm font-semibold text-deep hover:text-teal"
-            >
-              Wat het je oplevert <ArrowRight className="size-4" />
-            </Link>
+      <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2">
+          <Reveal
+            hover="lift"
+            className="group relative overflow-hidden rounded-3xl bg-card p-10 shadow-xl transition-all"
+          >
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-teal/10 transition-transform group-hover:scale-150" />
+            <div className="relative">
+              <span className="eyebrow inline-block rounded-full bg-teal/15 px-3 py-1 text-teal">
+                Voor leerlingen
+              </span>
+              <GraduationCap className="mt-6 size-7 text-teal" />
+              <h2 className="mt-4 text-3xl font-semibold">Ik ben scholier</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Ontdek in een kort gesprek welke richtingen bij je passen, en hoe die studies er in
+                het echt uitzien. Je houdt er een overzicht aan over dat je meeneemt naar je decaan.
+              </p>
+              <Link
+                to="/voor-leerlingen"
+                className="mt-8 inline-flex items-center gap-2 font-display font-semibold text-coral hover:underline"
+              >
+                Wat het je oplevert <ArrowRight className="size-4" />
+              </Link>
+            </div>
           </Reveal>
-          <Reveal hover="lift" delay={120} className="bg-card px-6 py-12 sm:px-10">
-            <School className="size-6 text-teal" />
-            <h2 className="mt-6 text-2xl font-semibold">Ik ben decaan of school</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Zet dit in als voorbereiding op het LOB-gesprek. De leerling komt binnen met
-              richtingen, twijfels en vragen op tafel — u begint niet meer bij nul.
-            </p>
-            <Link
-              to="/voor-scholen"
-              className="mt-8 inline-flex items-center gap-2 font-display text-sm font-semibold text-deep hover:text-teal"
-            >
-              Voor scholen <ArrowRight className="size-4" />
-            </Link>
+
+          <Reveal
+            hover="lift"
+            delay={120}
+            className="group relative overflow-hidden rounded-3xl bg-card p-10 shadow-xl transition-all"
+          >
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-coral/10 transition-transform group-hover:scale-150" />
+            <div className="relative">
+              <span className="eyebrow inline-block rounded-full bg-coral/15 px-3 py-1 text-coral">
+                Voor scholen
+              </span>
+              <School className="mt-6 size-7 text-coral" />
+              <h2 className="mt-4 text-3xl font-semibold">Ik ben decaan of school</h2>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                Zet dit in als voorbereiding op het LOB-gesprek. De leerling komt binnen met
+                richtingen, twijfels en vragen op tafel — u begint niet meer bij nul.
+              </p>
+              <Link
+                to="/voor-scholen"
+                className="mt-8 inline-flex items-center gap-2 font-display font-semibold text-teal hover:underline"
+              >
+                Voor scholen <ArrowRight className="size-4" />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* Hoe het werkt */}
-      <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-        <p className="eyebrow text-teal">Hoe het werkt</p>
-        <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
-          Vier stappen, samen zo&apos;n acht minuten.
-        </h2>
-        <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={i * 100} className="border-t-2 border-ink pt-6">
-              <div className="flex items-center justify-between">
-                <s.icon className="size-5 text-teal" />
-                <span className="font-display text-sm text-muted-foreground">0{i + 1}</span>
-              </div>
-              <h3 className="mt-5 text-lg font-semibold leading-snug">{s.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-            </Reveal>
-          ))}
-        </ol>
+      <section id="hoe-het-werkt" className="band-sand py-24">
+        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+          <div className="mb-16 text-center">
+            <p className="eyebrow text-teal">Hoe het werkt</p>
+            <h2 className="mt-4 text-4xl font-semibold">Vier stappen, samen zo&apos;n acht minuten.</h2>
+          </div>
+          <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((s, i) => (
+              <Reveal as="li" key={s.title} delay={i * 100} className="relative">
+                <div
+                  className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl text-2xl font-bold text-white shadow-lg ${
+                    i % 2 === 0 ? "bg-coral" : "bg-mint"
+                  }`}
+                >
+                  {i + 1}
+                </div>
+                <h3 className="mb-2 text-xl font-semibold leading-snug">{s.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                {i < steps.length - 1 && (
+                  <div className="absolute left-16 top-8 hidden h-[2px] w-full border-t-2 border-dashed border-teal/30 lg:block" />
+                )}
+              </Reveal>
+            ))}
+          </ol>
+        </div>
       </section>
 
       {/* Geen test, geen ChatGPT */}
       <section className="band-ink">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
-          <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
+          <h2 className="max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
             Waarom dit geen test is — en geen ChatGPT
           </h2>
           <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <p className="eyebrow text-mint">Niet een test</p>
+              <p className="eyebrow text-coral">Niet een test</p>
               <p className="mt-5 leading-relaxed text-ink-foreground/75">
                 Een test geeft een uitslag en laat je daarmee alleen. Hier ontstaat het beeld in een
                 gesprek: de gids vraagt door op waaróm iets je aanspreekt, spiegelt terug wat hij
@@ -173,7 +187,7 @@ function Home() {
               </p>
             </div>
             <div>
-              <p className="eyebrow text-mint">Niet ChatGPT</p>
+              <p className="eyebrow text-coral">Niet ChatGPT</p>
               <p className="mt-5 leading-relaxed text-ink-foreground/75">
                 Een algemene chatbot verzint moeiteloos een opleiding, een toelatingseis of een
                 salaris. Onze gids mag dat niet: elk feit komt uit onze eigen dataset van 150
@@ -190,13 +204,13 @@ function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <dl className="grid grid-cols-2 gap-y-10">
             {[
-              ["25–30%", "eerstejaars stopt of switcht"],
-              ["~30%", "uitval in het eerste hbo-jaar"],
-              ["48%", "noemt verkeerde studiekeuze"],
-              ["49%", "verwachtingen kwamen niet uit"],
+              ["32%", "valt in het eerste jaar uit of switcht"],
+              ["~42.500", "studenten per jaar"],
+              ["51%", "noemt: de verwachting kwam niet uit"],
+              ["50%", "noemt: ik heb de verkeerde studiekeuze gemaakt"],
             ].map(([n, l], i) => (
               <Reveal as="div" key={l} delay={i * 90}>
-                <dt className="font-display text-4xl font-semibold text-deep">{n}</dt>
+                <dt className="font-display text-4xl font-semibold text-coral">{n}</dt>
                 <dd className="mt-2 max-w-[14rem] text-sm text-muted-foreground">{l}</dd>
               </Reveal>
             ))}
@@ -204,16 +218,17 @@ function Home() {
           <div className="hairline pt-6 lg:border-none lg:pt-0">
             <p className="eyebrow text-teal">Bij de cijfers</p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Volgens het IBO &lsquo;Talent op de juiste plek&rsquo; (2024) schommelt het uitval- en
-              switchpercentage onder eerstejaars de laatste jaren tussen 25 en ruim 30 procent; in
-              het hbo stopt gemiddeld zo&apos;n 30 procent in het eerste jaar. Van de studenten die
-              switchten in 2022/2023 noemde 48 procent een verkeerde studiekeuze als reden en 49
-              procent dat de verwachtingen niet uitkwamen (Inspectie van het Onderwijs, De Staat van
-              het Onderwijs).
+              Ongeveer 32% van de eerstejaars valt in het eerste jaar uit of switcht van opleiding —
+              dat zijn zo&apos;n 42.500 studenten per jaar. De twee meest genoemde redenen die
+              studenten zelf noemen: &ldquo;de verwachting kwam niet uit&rdquo; (51%) en
+              &ldquo;ik heb de verkeerde studiekeuze gemaakt&rdquo; (50%).
+            </p>
+            <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
+              Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.
             </p>
             <Link
               to="/onderbouwing"
-              className="mt-6 inline-flex items-center gap-2 font-display text-sm font-semibold text-deep hover:text-teal"
+              className="mt-6 inline-flex items-center gap-2 font-display text-sm font-semibold text-teal hover:text-coral"
             >
               Lees de onderbouwing <ArrowRight className="size-4" />
             </Link>
@@ -231,8 +246,8 @@ function Home() {
             </p>
           </div>
           <Link
-            to="/voor-leerlingen"
-            className="group inline-flex items-center gap-2 rounded-sm bg-ink px-6 py-3.5 font-display text-sm font-semibold text-ink-foreground transition-colors hover:bg-deep"
+            to="/tool"
+            className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
           >
             Start de tool
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
