@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/logo-option-10.png";
 
 export function SiteFooter() {
   return (
@@ -6,7 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-5 py-14 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-sm">
-            <p className="font-display text-lg font-semibold">StudyFit.AI</p>
+            <img src={logo} alt="StudyFit.AI" className="h-10 w-auto" />
             <p className="mt-3 text-sm text-ink-foreground/70">
               Een geleide verkenning voor havo- en vwo-leerlingen. Gemaakt om het gesprek met de
               decaan voor te bereiden, niet om het te vervangen.
