@@ -5,13 +5,13 @@ import { Reveal } from "@/components/reveal";
 export const Route = createFileRoute("/onderbouwing")({
   head: () => ({
     meta: [
-      { title: "Onderbouwing — waarop Studiekeuze is gebaseerd" },
+      { title: "Onderbouwing — waarop StudyFit.AI is gebaseerd" },
       {
         name: "description",
         content:
-          "De cijfers over uitval en switchen, de LOB-loopbaancompetenties van Kuijpers en de eigen studiedataset achter Studiekeuze — met bronvermelding.",
+          "De cijfers over uitval en switchen, de LOB-loopbaancompetenties van Kuijpers en de eigen studiedataset achter StudyFit.AI — met bronvermelding.",
       },
-      { property: "og:title", content: "Onderbouwing — waarop Studiekeuze is gebaseerd" },
+      { property: "og:title", content: "Onderbouwing — waarop StudyFit.AI is gebaseerd" },
       {
         property: "og:description",
         content:

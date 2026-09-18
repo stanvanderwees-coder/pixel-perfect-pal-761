@@ -10,9 +10,9 @@ export const Route = createFileRoute("/prijzen")({
       {
         name: "description",
         content:
-          "Studiekeuze is gratis voor leerlingen. Scholen nemen een licentie per leerjaar of per school, inclusief begeleiding bij de inzet in het LOB-programma.",
+          "StudyFit.AI is gratis voor leerlingen. Scholen nemen een licentie per leerjaar of per school, inclusief begeleiding bij de inzet in het LOB-programma.",
       },
-      { property: "og:title", content: "Prijzen — Studiekeuze" },
+      { property: "og:title", content: "Prijzen — StudyFit.AI" },
       {
         property: "og:description",
         content: "Gratis voor leerlingen, heldere licentie voor scholen. Geen opstartkosten.",

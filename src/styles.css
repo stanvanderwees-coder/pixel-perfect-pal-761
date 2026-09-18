@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Studiekeuze design system — "Coral Reef"
+ * StudyFit.AI design system — "Coral Reef"
  * Palette: #0B4F6C (ink), #1A535C (deep), #20B2AA (teal), #4ECDC4 (mint), #FF6B6B (coral), #FFE66D (sun), #F7FFF7 (sand)
  * Type: Space Grotesk (headings) / DM Sans (body)
  */
@@ -269,7 +269,7 @@
   animation: mobile-menu-in 0.22s ease-out both;
 }
 
-/* ---- Studiekeuzetool ---- */
+/* ---- StudyFit.AI-tool ---- */
 @keyframes card-in {
   from {
     opacity: 0;

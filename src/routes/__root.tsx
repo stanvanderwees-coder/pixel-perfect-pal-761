@@ -80,17 +80,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Studiekeuze — geleide studiekeuze voor havo en vwo" },
+      { title: "StudyFit.AI — het gesprek voor havo & vwo" },
       {
         name: "description",
         content:
-          "Een rustige, geleide verkenning die havo- en vwo-leerlingen helpt hun studiekeuze scherp te krijgen.",
+          "Een rustige, geleide verkenning die havo- en vwo-leerlingen helpt hun studierichting scherp te krijgen.",
       },
-      { property: "og:title", content: "Studiekeuze — geleide studiekeuze voor havo en vwo" },
+      { property: "og:title", content: "StudyFit.AI — het gesprek voor havo & vwo" },
       {
         property: "og:description",
         content:
-          "Een rustige, geleide verkenning die havo- en vwo-leerlingen helpt hun studiekeuze scherp te krijgen.",
+          "Een rustige, geleide verkenning die havo- en vwo-leerlingen helpt hun studierichting scherp te krijgen.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

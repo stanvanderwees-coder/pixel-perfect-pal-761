@@ -6,7 +6,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-5 py-14 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-sm">
-            <p className="font-display text-lg font-semibold">Studiekeuze</p>
+            <p className="font-display text-lg font-semibold">StudyFit.AI</p>
             <p className="mt-3 text-sm text-ink-foreground/70">
               Een geleide verkenning voor havo- en vwo-leerlingen. Gemaakt om het gesprek met de
               decaan voor te bereiden, niet om het te vervangen.
@@ -31,7 +31,7 @@ export function SiteFooter() {
           </nav>
         </div>
         <p className="mt-12 border-t border-ink-foreground/15 pt-6 text-xs text-ink-foreground/50">
-          © {new Date().getFullYear()} Studiekeuze · Geen account, geen opslag van gesprekken.
+          © {new Date().getFullYear()} StudyFit.AI · Geen account, geen opslag van gesprekken.
         </p>
       </div>
     </footer>
