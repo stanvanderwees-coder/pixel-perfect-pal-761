@@ -32,7 +32,7 @@ const probleem = [
   },
   {
     kop: "De redenen die studenten zelf noemen",
-    body: "De twee meest genoemde redenen: \"de verwachting kwam niet uit\" (51%) en \"ik heb de verkeerde studiekeuze gemaakt\" (50%).",
+    body: 'De twee meest genoemde redenen: "de verwachting kwam niet uit" (51%) en "ik heb de verkeerde studiekeuze gemaakt" (50%).',
     bron: "Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.",
   },
   {
@@ -85,7 +85,7 @@ function Onderbouwing() {
       />
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-        <p className="eyebrow text-teal">Het probleem</p>
+        <p className="eyebrow text-coral">Het probleem</p>
         <div className="mt-12 space-y-10">
           {probleem.map((b, i) => (
             <Reveal
@@ -110,13 +110,13 @@ function Onderbouwing() {
           <h2 className="mt-4 max-w-2xl text-3xl font-semibold sm:text-4xl">
             Loopbaancompetenties, in dialoog en in concrete situaties.
           </h2>
-          <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-3">
+          <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
             {methode.map((m, i) => (
               <Reveal
                 key={m.kop}
                 delay={i * 90}
                 hover="lift"
-                className="rounded-sm border border-border bg-card p-5"
+                className="rounded-3xl border border-border bg-card p-6 shadow-sm"
               >
                 <h3 className="font-display text-base font-semibold">{m.kop}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.body}</p>
@@ -127,7 +127,7 @@ function Onderbouwing() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-        <p className="eyebrow text-teal">Wat uitval kost</p>
+        <p className="eyebrow text-coral">Wat uitval kost</p>
         <div className="mt-12 space-y-10">
           {kosten.map((k, i) => (
             <Reveal
@@ -148,7 +148,7 @@ function Onderbouwing() {
 
       <section className="band-ink">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-          <h2 className="max-w-2xl text-3xl font-semibold sm:text-4xl">Grenzen van de gids</h2>
+          <h2 className="max-w-2xl text-3xl font-semibold text-white sm:text-4xl">Grenzen van de gids</h2>
           <div className="mt-12 grid gap-12 md:grid-cols-3 md:gap-10">
             {[
               [

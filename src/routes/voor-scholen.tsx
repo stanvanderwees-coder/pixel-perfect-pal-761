@@ -52,7 +52,7 @@ const cijfers = [
   },
   {
     kop: "51% en 50%",
-    body: "noemen respectievelijk \"de verwachting kwam niet uit\" en \"ik heb de verkeerde studiekeuze gemaakt\" als reden.",
+    body: 'noemen respectievelijk "de verwachting kwam niet uit" en "ik heb de verkeerde studiekeuze gemaakt" als reden.',
     bron: "Bron: Monitor beleidsmaatregelen hoger onderwijs (ResearchNed), via onderwijskennis.nl.",
   },
   {
@@ -72,7 +72,7 @@ function VoorScholen() {
       >
         <Link
           to="/contact"
-          className="group inline-flex items-center gap-2 rounded-sm bg-mint px-6 py-3.5 font-display text-sm font-semibold text-ink transition-colors hover:bg-ink-foreground"
+          className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
         >
           Neem contact op
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -81,17 +81,17 @@ function VoorScholen() {
 
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
         <p className="eyebrow text-teal">Waar het over gaat</p>
-        <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-3">
+        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
           {cijfers.map((c, i) => (
             <Reveal
               key={c.kop}
               delay={i * 90}
               hover="lift"
-              className="rounded-sm border border-border bg-card p-5"
+              className="rounded-3xl border border-border bg-card p-6 shadow-sm"
             >
-              <p className="font-display text-3xl font-semibold text-deep">{c.kop}</p>
+              <p className="font-display text-3xl font-semibold text-coral">{c.kop}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">{c.bron}</p>
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">{c.bron}</p>
             </Reveal>
           ))}
         </div>
@@ -99,14 +99,14 @@ function VoorScholen() {
 
       <section className="border-y border-border band-sand">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
-          <p className="eyebrow text-teal">Hoe scholen het inzetten</p>
-          <div className="mt-12 grid gap-x-16 gap-y-12 md:grid-cols-2">
+          <p className="eyebrow text-coral">Hoe scholen het inzetten</p>
+          <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
             {inzet.map((i, idx) => (
               <Reveal
                 key={i.title}
                 delay={idx * 90}
                 hover="lift"
-                className="-mx-5 rounded-sm border-t-2 border-ink bg-card px-5 py-5 pt-6"
+                className="rounded-3xl border-l-4 border-l-teal bg-card p-6 shadow-sm"
               >
                 <h2 className="text-lg font-semibold">{i.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.body}</p>
@@ -125,12 +125,12 @@ function VoorScholen() {
             </h2>
           </div>
           <div className="space-y-6">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="leading-relaxed text-muted-foreground">
               Van dat bedrag wordt een groot deel door de overheid betaald. Voor de student zelf komt
               daar het levensonderhoud bij: een uitwonende student geeft ongeveer €13.800 per jaar
               uit, plus €2.601 collegegeld (studiejaar 2025-2026).
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="leading-relaxed text-muted-foreground">
               De gevolgen zijn niet alleen financieel. Onderzoekers wijzen op de persoonlijke impact:
               voor veel afhakers is uitval een flinke domper die kan leiden tot psychosociale
               klachten. Amerikaans onderzoek laat bovendien zien dat wie een verkeerde studiekeuze
@@ -147,8 +147,8 @@ function VoorScholen() {
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
             <div>
-              <p className="eyebrow text-mint">Regelgeving en zorgvuldigheid</p>
-              <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
+              <p className="eyebrow text-coral">Regelgeving en zorgvuldigheid</p>
+              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
                 AI in het onderwijs is hoog risico. Wij bouwen die eisen vanaf de basis in.
               </h2>
             </div>
@@ -186,9 +186,9 @@ function VoorScholen() {
           </div>
           <Link
             to="/prijzen"
-            className="inline-flex items-center gap-2 rounded-sm bg-ink px-6 py-3.5 font-display text-sm font-semibold text-ink-foreground transition-colors hover:bg-deep"
+            className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
           >
-            Bekijk prijzen <ArrowRight className="size-4" />
+            Bekijk prijzen <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
       </section>

@@ -46,42 +46,42 @@ function Contact() {
           >
             <div className="grid gap-6 sm:grid-cols-2">
               <label className="block">
-                <span className="eyebrow text-teal">Naam</span>
+                <span className="eyebrow text-coral">Naam</span>
                 <input
                   required
                   name="naam"
-                  className="mt-2 w-full rounded-sm border border-input bg-card px-3.5 py-2.5 text-sm outline-none focus:border-teal"
+                  className="mt-2 w-full rounded-xl border border-input bg-card px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-coral focus:ring-4 focus:ring-coral/10"
                 />
               </label>
               <label className="block">
-                <span className="eyebrow text-teal">School</span>
+                <span className="eyebrow text-coral">School</span>
                 <input
                   name="school"
-                  className="mt-2 w-full rounded-sm border border-input bg-card px-3.5 py-2.5 text-sm outline-none focus:border-teal"
+                  className="mt-2 w-full rounded-xl border border-input bg-card px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-coral focus:ring-4 focus:ring-coral/10"
                 />
               </label>
             </div>
             <label className="block">
-              <span className="eyebrow text-teal">E-mailadres</span>
+              <span className="eyebrow text-coral">E-mailadres</span>
               <input
                 required
                 type="email"
                 name="email"
-                className="mt-2 w-full rounded-sm border border-input bg-card px-3.5 py-2.5 text-sm outline-none focus:border-teal"
+                className="mt-2 w-full rounded-xl border border-input bg-card px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-coral focus:ring-4 focus:ring-coral/10"
               />
             </label>
             <label className="block">
-              <span className="eyebrow text-teal">Uw vraag</span>
+              <span className="eyebrow text-coral">Uw vraag</span>
               <textarea
                 required
                 name="bericht"
                 rows={6}
-                className="mt-2 w-full resize-none rounded-sm border border-input bg-card px-3.5 py-2.5 text-sm outline-none focus:border-teal"
+                className="mt-2 w-full resize-none rounded-xl border border-input bg-card px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-coral focus:ring-4 focus:ring-coral/10"
               />
             </label>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 rounded-sm bg-ink px-6 py-3.5 font-display text-sm font-semibold text-ink-foreground transition-colors hover:bg-deep"
+              className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3.5 font-display text-sm font-semibold text-white shadow-md shadow-coral/20 transition-transform hover:scale-105 active:scale-95"
             >
               {sent ? "Verzonden" : "Verstuur bericht"} <ArrowRight className="size-4" />
             </button>
@@ -92,7 +92,7 @@ function Contact() {
               <p className="eyebrow text-teal">Direct mailen</p>
               <a
                 href="mailto:hallo@studiekeuze.nl"
-                className="mt-3 inline-flex items-center gap-2 font-display text-base font-semibold text-deep hover:text-teal"
+                className="mt-3 inline-flex items-center gap-2 font-display text-base font-semibold text-teal hover:text-coral"
               >
                 <Mail className="size-4" /> hallo@studiekeuze.nl
               </a>
