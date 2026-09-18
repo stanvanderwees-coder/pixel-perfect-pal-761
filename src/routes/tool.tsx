@@ -16,8 +16,10 @@ import {
   Eye,
   PenLine,
   School,
+  MessageCircle,
+  Volume2,
 } from "lucide-react";
-import toolOrb from "@/assets/tool-reef-hero.jpg";
+import logoMark from "@/assets/logo-mark.png";
 import { Reveal } from "@/components/reveal";
 
 
@@ -228,111 +230,79 @@ function ToolPage() {
     setNote("");
   }
 
+  const guideCopy = [
+    "Hoi! Eerst wil ik kort weten waar jij nu staat.",
+    "Mooi. Kies op gevoel — er zijn geen foute antwoorden.",
+    "Ik zie een richting ontstaan. Vertel me wat je daarin aanspreekt.",
+    "Dit zijn studies die aansluiten op wat jij belangrijk vindt.",
+  ][step];
+
   return (
-    <div className="reef-shell relative overflow-hidden">
-      {/* Playful backdrop */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div
-          className="reef-blob left-[-8%] top-[-6%] size-[26rem]"
-          style={{ background: "var(--color-mint)" }}
-        />
-        <div
-          className="reef-blob right-[-10%] top-[14%] size-[22rem]"
-          style={{ background: "var(--color-sun)", animationDelay: "-5s" }}
-        />
-        <div
-          className="reef-blob bottom-[-12%] left-[28%] size-[24rem]"
-          style={{ background: "var(--color-coral)", animationDelay: "-10s" }}
-        />
-      </div>
-
-      {/* Hero */}
-      <section className="relative">
-        <div className="mx-auto max-w-5xl px-5 pb-12 pt-16 lg:px-8 lg:pt-24">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <p className="eyebrow inline-flex items-center gap-2 rounded-full bg-coral px-3.5 py-1.5 text-white">
-                <Sparkles className="size-3.5" /> StudyFit.AI · havo &amp; vwo
+    <div className="ai-stage relative overflow-hidden">
+      <div aria-hidden="true" className="ai-grid absolute inset-0" />
+      <div className="relative mx-auto min-h-[calc(100svh-4rem)] max-w-[1500px] px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
+        <div className="ai-console grid min-h-[calc(100svh-7.5rem)] overflow-hidden rounded-[1.75rem] lg:grid-cols-[minmax(300px,0.78fr)_minmax(560px,1.45fr)]">
+          <aside className="ai-guide relative flex min-h-[420px] flex-col overflow-hidden p-6 text-ink-foreground sm:p-8 lg:min-h-0 lg:p-10">
+            <div aria-hidden="true" className="ai-orbit ai-orbit-one" />
+            <div aria-hidden="true" className="ai-orbit ai-orbit-two" />
+            <div className="relative z-10 flex items-center justify-between">
+              <p className="eyebrow flex items-center gap-2 text-mint">
+                <Sparkles className="size-3.5" /> StudyFit.AI
               </p>
-              <h1 className="mt-6 text-4xl font-semibold leading-[1.04] sm:text-5xl lg:text-6xl">
-                Ontdek welke studie{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10">echt bij je past.</span>
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-sun sm:h-4"
-                  />
-                </span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Geen lijstje en geen test met een uitslag, maar een korte reis die je helpt kiezen —
-                gebaseerd op echte Nederlandse studies.
-              </p>
-
-              <dl className="mt-9 grid max-w-lg grid-cols-3 gap-3">
-                {facts.map((f) => (
-                  <div key={f.label} className="pop-card rounded-2xl px-3.5 py-3">
-                    <f.icon className="size-4 text-teal" />
-                    <dt className="mt-2 font-display text-sm font-semibold">{f.label}</dt>
-                    <dd className="text-xs text-muted-foreground">{f.sub}</dd>
-                  </div>
-                ))}
-              </dl>
+              <span className="flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-[0.68rem] font-semibold uppercase text-mint">
+                <span className="ai-live-dot size-1.5 rounded-full bg-mint" /> live
+              </span>
             </div>
 
-            <div className="relative">
-              <div className="pop-card relative overflow-hidden rounded-[2rem] p-2">
-                <img
-                  src={toolOrb}
-                  alt=""
-                  aria-hidden="true"
-                  width={1600}
-                  height={912}
-                  className="h-56 w-full rounded-[1.6rem] object-cover sm:h-72 lg:h-80"
-                />
+            <div className="relative z-10 my-auto flex flex-col items-center py-7 text-center">
+              <div className="ai-mascot-wrap relative">
+                <div className="ai-signal ai-signal-one" aria-hidden="true" />
+                <div className="ai-signal ai-signal-two" aria-hidden="true" />
+                <div className="ai-mascot relative grid size-52 place-items-center rounded-full sm:size-60 lg:size-64">
+                  <img src={logoMark} alt="StudyFit AI-gids" className="ai-mascot-image size-[78%] object-contain" />
+                  <span className="absolute bottom-4 right-5 grid size-10 place-items-center rounded-full border-4 border-ink bg-coral text-primary-foreground shadow-lift">
+                    <Volume2 className="size-4" />
+                  </span>
+                </div>
               </div>
-              <div className="absolute -bottom-4 left-6 rounded-full bg-ink px-4 py-2 font-display text-xs font-semibold text-ink-foreground shadow-lift">
-                AI-gids · live
+              <div className="ai-wave mt-7 flex h-6 items-center gap-1" aria-hidden="true">
+                {Array.from({ length: 9 }).map((_, i) => <span key={i} />)}
+              </div>
+              <p className="mt-3 font-display text-xs font-semibold uppercase text-mint">Je AI-gids denkt mee</p>
+              <h1 className="mt-4 max-w-md text-3xl font-semibold leading-tight sm:text-4xl">Ontdek welke studie echt bij je past.</h1>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-foreground/70">Geen lijstje en geen test met een uitslag, maar een korte reis gebaseerd op echte Nederlandse studies.</p>
+            </div>
+
+            <div className="relative z-10 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 p-4 backdrop-blur-md">
+              <div className="flex gap-3">
+                <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-coral text-primary-foreground"><MessageCircle className="size-4" /></span>
+                <p className="text-sm leading-relaxed text-ink-foreground/85">{guideCopy}</p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </aside>
 
-      {/* Flow */}
-      <section className="relative">
-        <div className="mx-auto max-w-3xl px-5 pb-20 pt-6 lg:px-8 lg:pb-28">
-          {/* Progress */}
-          <div className="pop-card flex items-center gap-4 rounded-full px-4 py-3">
-            <div className="flex items-center gap-1.5">
-              {Array.from({ length: totalSteps }).map((_, i) => (
-                <span
-                  key={i}
-                  aria-hidden="true"
-                  className={`grid size-6 place-items-center rounded-full font-display text-[0.65rem] font-bold transition-all duration-300 ${
-                    i < step
-                      ? "bg-teal text-white"
-                      : i === step
-                        ? "bg-coral text-white"
-                        : "border border-border text-muted-foreground"
-                  }`}
-                >
-                  {i < step ? <Check className="size-3" /> : i + 1}
-                </span>
-              ))}
-            </div>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-secondary">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500 ease-out"
-                style={{ width: `${Math.max(progress, 4)}%` }}
-              />
-            </div>
-            <span className="font-display text-xs font-semibold tracking-wide text-muted-foreground">
-              Stap {step + 1}/{totalSteps}
-            </span>
-          </div>
+          <section className="flex min-w-0 flex-col bg-card/95">
+            <header className="border-b border-border px-5 py-5 sm:px-8 lg:px-10">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="font-display text-sm font-semibold">Jouw studieverkenning</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Anoniem · ongeveer 8 minuten</p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  {Array.from({ length: totalSteps }).map((_, i) => (
+                    <span key={i} className={`grid size-7 place-items-center rounded-full font-display text-[0.65rem] font-bold ${i < step ? "bg-teal text-primary-foreground" : i === step ? "bg-coral text-primary-foreground" : "border border-border text-muted-foreground"}`}>
+                      {i < step ? <Check className="size-3" /> : i + 1}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary">
+                <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 4)}%` }} />
+              </div>
+            </header>
 
-          <div className="pop-card mt-6 rounded-[2rem] p-6 sm:p-9">
+            <div className="flex-1 overflow-y-auto p-5 sm:p-8 lg:p-10">
+              <div className="mx-auto w-full max-w-3xl">
             {step === 0 && (
               <div key="s0" className="tool-card-in">
                 <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
@@ -669,14 +639,14 @@ function ToolPage() {
                 </div>
               </div>
             )}
-          </div>
-
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je
-            decaan of mentor.
-          </p>
+              </div>
+            </div>
+            <footer className="border-t border-border px-5 py-4 text-center text-xs text-muted-foreground sm:px-8">
+              Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je decaan of mentor.
+            </footer>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
