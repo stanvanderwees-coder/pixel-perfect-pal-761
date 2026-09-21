@@ -261,7 +261,7 @@ function ToolPage() {
   return (
     <main className="study-studio min-h-[calc(100svh-4rem)] p-3 sm:p-5 lg:p-7">
       <div className="studio-panel mx-auto grid min-h-[calc(100svh-6rem)] max-w-[1540px] overflow-hidden rounded-[1.5rem] lg:grid-cols-[minmax(290px,0.68fr)_minmax(0,1.65fr)]">
-        <aside className="relative flex min-h-[390px] flex-col overflow-hidden bg-ink p-6 text-ink-foreground sm:p-8 lg:min-h-0 lg:p-9">
+        <aside className="relative flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:min-h-0 lg:p-9">
           <div aria-hidden="true" className="guide-aura absolute -left-24 top-24 size-80 rounded-full bg-teal/20 blur-3xl" />
           <div aria-hidden="true" className="absolute -bottom-32 -right-28 size-80 rounded-full bg-coral/15 blur-3xl" />
           <div className="relative z-10 flex items-center justify-between gap-3">
@@ -274,8 +274,8 @@ function ToolPage() {
             </span>
           </div>
 
-          <div className="relative z-10 flex flex-1 flex-col justify-center py-6 lg:py-9">
-            <div className="relative mx-auto w-full max-w-[260px]">
+          <div className="relative z-10 flex flex-1 flex-col justify-center py-3 sm:py-6 lg:py-9">
+            <div className="relative mx-auto w-full max-w-[150px] sm:max-w-[230px] lg:max-w-[260px]">
               <div className="guide-aura absolute inset-8 rounded-full border border-teal/40" />
               <div className="guide-aura absolute inset-2 rounded-full border border-mint/15" />
               <div className="relative mx-auto grid aspect-square w-[76%] place-items-center rounded-full bg-gradient-to-br from-mint/25 via-teal/15 to-coral/20 shadow-[0_0_80px_-24px_var(--color-teal)]">
@@ -285,20 +285,20 @@ function ToolPage() {
                 </span>
               </div>
             </div>
-            <div className="guide-equalizer mt-5 flex h-5 items-center justify-center gap-1" aria-hidden="true">
+            <div className="guide-equalizer mt-3 flex h-5 items-center justify-center gap-1 sm:mt-5" aria-hidden="true">
               {[10, 18, 13, 21, 16, 11, 18].map((height, i) => <span key={`${height}-${i}`} className="w-1 rounded-full bg-mint" style={{ height }} />)}
             </div>
-            <p className="mt-3 text-center font-display text-xs font-semibold uppercase text-mint">Noor · jouw AI-gids</p>
-            <h1 className="mt-4 text-center font-display text-3xl font-semibold leading-tight sm:text-4xl">
+            <p className="mt-2 text-center font-display text-[0.65rem] font-semibold uppercase text-mint sm:mt-3 sm:text-xs">Noor · jouw AI-gids</p>
+            <h1 className="mt-2 text-center font-display text-2xl font-semibold leading-tight sm:mt-4 sm:text-4xl">
               Vind een studie die <span className="text-mint">echt</span> bij je past.
             </h1>
           </div>
 
-          <Conversation className="relative z-10 max-h-36 min-h-28 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md">
+          <Conversation className="relative z-10 hidden max-h-36 min-h-28 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md sm:block">
             <ConversationContent className="gap-3 p-4">
               <Message from="assistant" className="max-w-full">
                 <MessageContent className="text-ink-foreground">
-                  <MessageResponse>{guideCopy}</MessageResponse>
+                  <MessageResponse className="text-ink-foreground">{guideCopy}</MessageResponse>
                 </MessageContent>
               </Message>
             </ConversationContent>
