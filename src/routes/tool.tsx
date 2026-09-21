@@ -16,11 +16,30 @@ import {
   Eye,
   PenLine,
   School,
-  MessageCircle,
   Volume2,
+  LockKeyhole,
+  BrainCircuit,
+  Waves,
 } from "lucide-react";
 import logoMark from "@/assets/logo-mark.png";
 import { Reveal } from "@/components/reveal";
+import { Button } from "@/components/ui/button";
+import {
+  Conversation,
+  ConversationContent,
+  ConversationScrollButton,
+} from "@/components/ai-elements/conversation";
+import {
+  Message,
+  MessageContent,
+  MessageResponse,
+} from "@/components/ai-elements/message";
+import {
+  PromptInput,
+  PromptInputFooter,
+  PromptInputSubmit,
+  PromptInputTextarea,
+} from "@/components/ai-elements/prompt-input";
 
 
 export const Route = createFileRoute("/tool")({
@@ -235,418 +254,203 @@ function ToolPage() {
     "Mooi. Kies op gevoel — er zijn geen foute antwoorden.",
     "Ik zie een richting ontstaan. Vertel me wat je daarin aanspreekt.",
     "Dit zijn studies die aansluiten op wat jij belangrijk vindt.",
-  ][step];
+  ][step] ?? "Ik denk met je mee.";
+
+  const currentCard = cards[index];
 
   return (
-    <div className="ai-stage relative overflow-hidden">
-      <div aria-hidden="true" className="ai-grid absolute inset-0" />
-      <div className="relative mx-auto min-h-[calc(100svh-4rem)] max-w-[1500px] px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
-        <div className="ai-console grid min-h-[calc(100svh-7.5rem)] overflow-hidden rounded-[1.75rem] lg:grid-cols-[minmax(300px,0.78fr)_minmax(560px,1.45fr)]">
-          <aside className="ai-guide relative flex min-h-[420px] flex-col overflow-hidden p-6 text-ink-foreground sm:p-8 lg:min-h-0 lg:p-10">
-            <div aria-hidden="true" className="ai-orbit ai-orbit-one" />
-            <div aria-hidden="true" className="ai-orbit ai-orbit-two" />
-            <div className="relative z-10 flex items-center justify-between">
-              <p className="eyebrow flex items-center gap-2 text-mint">
-                <Sparkles className="size-3.5" /> StudyFit.AI
-              </p>
-              <span className="flex items-center gap-2 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-[0.68rem] font-semibold uppercase text-mint">
-                <span className="ai-live-dot size-1.5 rounded-full bg-mint" /> live
-              </span>
-            </div>
+    <main className="study-studio min-h-[calc(100svh-4rem)] p-3 sm:p-5 lg:p-7">
+      <div className="studio-panel mx-auto grid min-h-[calc(100svh-6rem)] max-w-[1540px] overflow-hidden rounded-[1.5rem] lg:grid-cols-[minmax(290px,0.68fr)_minmax(0,1.65fr)]">
+        <aside className="relative flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:min-h-0 lg:p-9">
+          <div aria-hidden="true" className="guide-aura absolute -left-24 top-24 size-80 rounded-full bg-teal/20 blur-3xl" />
+          <div aria-hidden="true" className="absolute -bottom-32 -right-28 size-80 rounded-full bg-coral/15 blur-3xl" />
+          <div className="relative z-10 flex items-center justify-between gap-3">
+            <Link to="/" className="flex items-center gap-2.5 font-display text-sm font-semibold">
+              <img src={logoMark} alt="" className="size-9 object-contain" />
+              <span>StudyFit.AI</span>
+            </Link>
+            <span className="flex items-center gap-2 rounded-full border border-mint/25 bg-mint/10 px-3 py-1 text-[0.65rem] font-bold uppercase text-mint">
+              <span className="ai-live-dot size-1.5 rounded-full bg-mint" /> Noor is er
+            </span>
+          </div>
 
-            <div className="relative z-10 my-auto flex flex-col items-center py-7 text-center">
-              <div className="ai-mascot-wrap relative">
-                <div className="ai-signal ai-signal-one" aria-hidden="true" />
-                <div className="ai-signal ai-signal-two" aria-hidden="true" />
-                <div className="ai-mascot relative grid size-52 place-items-center rounded-full sm:size-60 lg:size-64">
-                  <img src={logoMark} alt="StudyFit AI-gids" className="ai-mascot-image size-[78%] object-contain" />
-                  <span className="absolute bottom-4 right-5 grid size-10 place-items-center rounded-full border-4 border-ink bg-coral text-primary-foreground shadow-lift">
-                    <Volume2 className="size-4" />
-                  </span>
-                </div>
-              </div>
-              <div className="ai-wave mt-7 flex h-6 items-center gap-1" aria-hidden="true">
-                {Array.from({ length: 9 }).map((_, i) => <span key={i} />)}
-              </div>
-              <p className="mt-3 font-display text-xs font-semibold uppercase text-mint">Je AI-gids denkt mee</p>
-              <h1 className="mt-4 max-w-md text-3xl font-semibold leading-tight sm:text-4xl">Ontdek welke studie echt bij je past.</h1>
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-foreground/70">Geen lijstje en geen test met een uitslag, maar een korte reis gebaseerd op echte Nederlandse studies.</p>
-            </div>
-
-            <div className="relative z-10 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 p-4 backdrop-blur-md">
-              <div className="flex gap-3">
-                <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-coral text-primary-foreground"><MessageCircle className="size-4" /></span>
-                <p className="text-sm leading-relaxed text-ink-foreground/85">{guideCopy}</p>
-              </div>
-            </div>
-          </aside>
-
-          <section className="flex min-w-0 flex-col bg-card/95">
-            <header className="border-b border-border px-5 py-5 sm:px-8 lg:px-10">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="font-display text-sm font-semibold">Jouw studieverkenning</p>
-                  <p className="mt-1 text-xs text-muted-foreground">Anoniem · ongeveer 8 minuten</p>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  {Array.from({ length: totalSteps }).map((_, i) => (
-                    <span key={i} className={`grid size-7 place-items-center rounded-full font-display text-[0.65rem] font-bold ${i < step ? "bg-teal text-primary-foreground" : i === step ? "bg-coral text-primary-foreground" : "border border-border text-muted-foreground"}`}>
-                      {i < step ? <Check className="size-3" /> : i + 1}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary">
-                <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 4)}%` }} />
-              </div>
-            </header>
-
-            <div className="flex-1 overflow-y-auto p-5 sm:p-8 lg:p-10">
-              <div className="mx-auto w-full max-w-3xl">
-            {step === 0 && (
-              <div key="s0" className="tool-card-in">
-                <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
-                  <Compass className="size-3.5 text-teal" /> Stap 1
+          <div className="relative z-10 flex flex-1 flex-col justify-center py-3 sm:py-6 lg:py-9">
+            <div className="relative mx-auto w-full max-w-[150px] sm:max-w-[230px] lg:max-w-[260px]">
+              <div className="guide-aura absolute inset-8 rounded-full border border-teal/40" />
+              <div className="guide-aura absolute inset-2 rounded-full border border-mint/15" />
+              <div className="relative mx-auto grid aspect-square w-[76%] place-items-center rounded-full bg-gradient-to-br from-mint/25 via-teal/15 to-coral/20 shadow-[0_0_80px_-24px_var(--color-teal)]">
+                <img src={logoMark} alt="Noor, je StudyFit AI-gids" className="ai-mascot-image size-[82%] object-contain" />
+                <span className="absolute bottom-1 right-2 grid size-9 place-items-center rounded-full border-4 border-ink bg-coral text-primary-foreground">
+                  <Volume2 className="size-4" />
                 </span>
-                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
-                  Waar begin je?
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Twee vragen, dan gaan we swipen.
-                </p>
-
-                <p className="mt-8 font-display text-sm font-semibold">Welk niveau zit je?</p>
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  {(["havo", "vwo"] as const).map((l) => (
-                    <button
-                      key={l}
-                      type="button"
-                      onClick={() => setLevel(l)}
-                      aria-pressed={level === l}
-                      className={`pop-tile group flex items-center gap-3 rounded-2xl px-5 py-4 text-left font-display text-base font-semibold uppercase tracking-[0.08em] ${
-                        level === l ? "pop-tile-active" : "hover:-translate-y-0.5 hover:border-coral/50"
-                      }`}
-                    >
-                      <School className={`size-5 ${level === l ? "text-coral" : "text-teal"}`} />
-                      {l}
-                      <span
-                        className={`ml-auto grid size-5 place-items-center rounded-full border transition-colors ${
-                          level === l
-                            ? "border-coral bg-coral text-white"
-                            : "border-border text-transparent"
-                        }`}
-                      >
-                        <Check className="size-3" />
-                      </span>
-                    </button>
-                  ))}
-                </div>
-
-                <p className="mt-8 font-display text-sm font-semibold">Waar sta je nu?</p>
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  {(
-                    [
-                      {
-                        id: "geen-idee" as Stance,
-                        title: "Ik heb nog geen idee",
-                        body: "Verken breed wat bij je past.",
-                      },
-                      {
-                        id: "twijfel" as Stance,
-                        title: "Ik twijfel al tussen een paar",
-                        body: "Vergelijk gericht en verdiep.",
-                      },
-                    ] as const
-                  ).map((o) => (
-                    <button
-                      key={o.id}
-                      type="button"
-                      onClick={() => setStance(o.id)}
-                      aria-pressed={stance === o.id}
-                      className={`pop-tile relative overflow-hidden rounded-2xl p-5 text-left ${
-                        stance === o.id
-                          ? "pop-tile-active"
-                          : "hover:-translate-y-0.5 hover:border-coral/50"
-                      }`}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={`absolute inset-y-0 left-0 w-1.5 transition-colors ${
-                          stance === o.id ? "bg-coral" : "bg-transparent"
-                        }`}
-                      />
-                      <span className="font-display text-sm font-semibold">{o.title}</span>
-                      <span className="mt-1.5 block text-sm leading-relaxed text-muted-foreground">
-                        {o.body}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="mt-9 flex flex-wrap items-center gap-4 border-t border-border pt-7">
-                  <button
-                    type="button"
-                    disabled={!level || !stance}
-                    onClick={() => setStep(1)}
-                    className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-display text-sm font-semibold text-white shadow-lift transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
-                  >
-                    Beginnen
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                  <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">
-                    <strong className="font-semibold text-foreground">
-                      Geen account, niets wordt opgeslagen.
-                    </strong>{" "}
-                    Sluit je dit, dan is alles weg.
-                  </p>
-                </div>
               </div>
-            )}
+            </div>
+            <div className="guide-equalizer mt-3 flex h-5 items-center justify-center gap-1 sm:mt-5" aria-hidden="true">
+              {[10, 18, 13, 21, 16, 11, 18].map((height, i) => <span key={`${height}-${i}`} className="w-1 rounded-full bg-mint" style={{ height }} />)}
+            </div>
+            <p className="mt-2 text-center font-display text-[0.65rem] font-semibold uppercase text-mint sm:mt-3 sm:text-xs">Noor · jouw AI-gids</p>
+            <h1 className="mt-2 text-center font-display text-2xl font-semibold leading-tight sm:mt-4 sm:text-4xl">
+              Vind een studie die <span className="text-mint">echt</span> bij je past.
+            </h1>
+          </div>
 
-            {step === 1 && (
+          <Conversation className="relative z-10 hidden max-h-36 min-h-28 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md sm:block">
+            <ConversationContent className="gap-3 p-4">
+              <Message from="assistant" className="max-w-full">
+                <MessageContent className="text-ink-foreground">
+                  <MessageResponse className="text-ink-foreground">{guideCopy}</MessageResponse>
+                </MessageContent>
+              </Message>
+            </ConversationContent>
+            <ConversationScrollButton />
+          </Conversation>
+        </aside>
+
+        <section className="flex min-w-0 flex-col bg-card/95">
+          <header className="border-b border-border px-5 py-4 sm:px-8 lg:px-10">
+            <div className="flex items-start justify-between gap-5">
               <div>
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
-                      <Sparkles className="size-3.5 text-coral" /> Stap 2
-                    </span>
-                    <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
-                      Wat spreekt je aan?
-                    </h2>
-                  </div>
-                  <span className="font-display text-xs font-semibold text-muted-foreground">
-                    {index + 1} / {cards.length}
-                  </span>
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Activiteiten, geen studienamen. Ga op gevoel.
-                </p>
-
-                {/* Card deck */}
-                <div className="relative mt-8">
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-6 -top-4 h-full rounded-[1.9rem] border-2 border-border bg-secondary/50"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-3 -top-2 h-full rounded-[1.9rem] border-2 border-border bg-secondary"
-                  />
-                  <div
-                    key={index}
-                    className="tool-card-in relative overflow-hidden rounded-[1.9rem] bg-ink p-7 text-ink-foreground shadow-panel sm:p-10"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="absolute -right-10 -top-10 size-40 rounded-full bg-coral/40 blur-2xl"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="absolute -bottom-12 -left-8 size-40 rounded-full bg-mint/30 blur-2xl"
-                    />
-                    <div className="relative">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-sun px-3 py-1 font-display text-[0.7rem] font-semibold text-ink">
-                        <Sparkles className="size-3.5" /> {index + 1} / {cards.length}
+                <p className="font-display text-sm font-semibold">Jouw studieverkenning</p>
+                <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground"><LockKeyhole className="size-3" /> Anoniem · ongeveer 8 minuten</p>
+              </div>
+              <div className="hidden items-center sm:flex">
+                {["Start", "Voelen", "Verdiepen", "Match"].map((label, i) => (
+                  <div key={label} className="flex items-center">
+                    <span className={`studio-step flex items-center gap-1.5 text-xs font-semibold ${i <= step ? "text-foreground" : "text-muted-foreground/55"}`}>
+                      <span className={`grid size-7 place-items-center rounded-full ${i < step ? "bg-teal text-primary-foreground" : i === step ? "bg-coral text-primary-foreground shadow-lift" : "border border-border bg-card"}`}>
+                        {i < step ? <Check className="size-3" /> : i + 1}
                       </span>
-                      <p className="mt-5 font-display text-xl font-semibold leading-snug sm:text-2xl">
-                        {cards[index]?.text}
-                      </p>
-                      <p className="mt-4 text-xs uppercase tracking-[0.16em] text-mint">
-                        {cards[index]?.hint}
-                      </p>
+                      <span className="hidden xl:inline">{label}</span>
+                    </span>
+                    {i < totalSteps - 1 && <span className={`mx-2 h-px w-5 xl:w-9 ${i < step ? "bg-teal" : "bg-border"}`} />}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-4 h-1 overflow-hidden rounded-full bg-secondary">
+              <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 5)}%` }} />
+            </div>
+          </header>
+
+          <div className="flex-1 overflow-y-auto px-5 py-7 sm:px-8 lg:px-10 lg:py-9">
+            <div className="mx-auto w-full max-w-4xl">
+              {step === 0 && (
+                <div key="s0" className="tool-card-in">
+                  <div className="grid gap-7 xl:grid-cols-[1fr_230px] xl:items-start">
+                    <div>
+                      <span className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase text-teal"><Compass className="size-4" /> Stap 1 · even voorstellen</span>
+                      <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">Waar begin je?</h2>
+                      <p className="mt-2 text-sm text-muted-foreground">Twee korte keuzes. Daarna gaan we op gevoel verkennen.</p>
+                    </div>
+                    <div className="studio-soft grid grid-cols-3 gap-2 rounded-2xl p-3 xl:grid-cols-1">
+                      {facts.map(({ icon: Icon, label, sub }) => <div key={label} className="flex items-center gap-2 rounded-xl bg-card/70 p-2.5"><Icon className="size-4 shrink-0 text-teal" /><span><strong className="block font-display text-xs">{label}</strong><small className="block text-[0.65rem] text-muted-foreground">{sub}</small></span></div>)}
                     </div>
                   </div>
-                </div>
 
-                {/* Deck position dots */}
-                <div className="mt-5 flex justify-center gap-1.5" aria-hidden="true">
-                  {cards.map((c, i) => (
-                    <span
-                      key={c.text}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
-                        i === index
-                          ? "w-7 bg-coral"
-                          : i < index
-                            ? "w-2 bg-teal"
-                            : "w-2 bg-border"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <div className="mt-6 flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() => swipe(false)}
-                    className="pop-tile group inline-flex flex-1 items-center justify-center gap-2 rounded-2xl px-5 py-4 font-display text-sm font-semibold hover:-translate-y-0.5 hover:border-ink/30"
-                  >
-                    <X className="size-4 transition-transform group-hover:-rotate-12" /> Niks voor
-                    mij
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => swipe(true)}
-                    className="group inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-coral px-5 py-4 font-display text-sm font-semibold text-white shadow-lift transition-all duration-200 hover:-translate-y-0.5"
-                  >
-                    <Check className="size-4 transition-transform group-hover:scale-110" /> Dit
-                    trekt me
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => (index === 0 ? setStep(0) : setIndex((i) => i - 1))}
-                  className="mt-6 inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-coral"
-                >
-                  <ArrowLeft className="size-3.5" /> Terug
-                </button>
-              </div>
-            )}
-
-            {step === 2 && (
-              <div className="tool-card-in">
-                <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
-                  <PenLine className="size-3.5 text-teal" /> Stap 3
-                </span>
-                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
-                  Even doorvragen
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                  {ranking[0]
-                    ? `Je koos vooral richting ${(domainLabels[ranking[0]![0]] ?? "").toLowerCase()}. Wat trok je daarin?`
-                    : "Je liet bijna alles liggen. Wat maakte dat niets klikte?"}
-                </p>
-                <div className="mt-6 rounded-2xl bg-secondary p-2">
-                  <textarea
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    rows={5}
-                    placeholder="Typ in je eigen woorden — één of twee zinnen is genoeg."
-                    className="w-full resize-none rounded-xl border border-border bg-card p-4 text-sm leading-relaxed text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-coral focus:ring-4 focus:ring-coral/15"
-                  />
-                </div>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setStep(3)}
-                    className="group inline-flex items-center gap-2 rounded-full bg-coral px-6 py-3 font-display text-sm font-semibold text-white shadow-lift transition-transform hover:-translate-y-0.5"
-                  >
-                    Naar mijn studies
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setStep(3)}
-                    className="rounded-full border-2 border-border px-5 py-3 font-display text-sm font-semibold transition-colors hover:border-coral hover:text-coral"
-                  >
-                    Overslaan
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {step === 3 && (
-              <div className="tool-card-in">
-                <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 font-display text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground">
-                  <GraduationCap className="size-3.5 text-coral" /> Stap 4
-                </span>
-                <h2 className="mt-4 font-display text-2xl font-semibold sm:text-3xl">
-                  Dit past bij je
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                  Op basis van je swipes{level ? ` en je ${level}-niveau` : ""} — met uitleg waarom,
-                  en hoe de studie er écht uitziet.
-                </p>
-
-                {ranking.length > 0 && (
-                  <div className="mt-7 space-y-2.5 rounded-2xl bg-secondary p-5">
-                    {ranking.slice(0, 3).map(([d, n]) => (
-                      <div key={d} className="flex items-center gap-3">
-                        <span className="w-44 shrink-0 font-display text-xs font-semibold">
-                          {domainLabels[d]}
-                        </span>
-                        <span className="h-2 flex-1 overflow-hidden rounded-full bg-card">
-                          <span
-                            className="block h-full rounded-full bg-gradient-to-r from-teal to-coral"
-                            style={{
-                              width: `${Math.round((n / (ranking[0]?.[1] ?? 1)) * 100)}%`,
-                            }}
-                          />
-                        </span>
-                        <span className="w-8 shrink-0 text-right font-display text-xs font-semibold text-muted-foreground">
-                          {n}x
-                        </span>
+                  <div className="mt-8 grid gap-7 lg:grid-cols-2">
+                    <fieldset>
+                      <legend className="font-display text-sm font-semibold">Welk niveau zit je?</legend>
+                      <div className="mt-3 grid grid-cols-2 gap-3">
+                        {(["havo", "vwo"] as const).map((l) => (
+                          <Button key={l} type="button" variant="outline" onClick={() => setLevel(l)} aria-pressed={level === l} className={`studio-choice h-16 justify-start rounded-xl px-4 text-left font-display text-base uppercase ${level === l ? "border-coral bg-coral/10 ring-2 ring-coral/15" : "bg-card"}`}>
+                            <School className={level === l ? "text-coral" : "text-teal"} /> {l}
+                            <span className={`ml-auto grid size-5 place-items-center rounded-full border ${level === l ? "border-coral bg-coral text-primary-foreground" : "border-border text-transparent"}`}><Check className="size-3" /></span>
+                          </Button>
+                        ))}
                       </div>
-                    ))}
+                    </fieldset>
+
+                    <fieldset>
+                      <legend className="font-display text-sm font-semibold">Waar sta je nu?</legend>
+                      <div className="mt-3 space-y-3">
+                        {([{ id: "geen-idee" as Stance, title: "Ik heb nog geen idee", body: "Verken breed wat bij je past." }, { id: "twijfel" as Stance, title: "Ik twijfel al tussen een paar", body: "Vergelijk gericht en verdiep." }] as const).map((o) => (
+                          <Button key={o.id} type="button" variant="outline" onClick={() => setStance(o.id)} aria-pressed={stance === o.id} className={`studio-choice h-auto w-full justify-start whitespace-normal rounded-xl px-4 py-3 text-left ${stance === o.id ? "border-teal bg-teal/10 ring-2 ring-teal/10" : "bg-card"}`}>
+                            <BrainCircuit className={`shrink-0 ${stance === o.id ? "text-teal" : "text-muted-foreground"}`} />
+                            <span><strong className="block font-display text-sm">{o.title}</strong><small className="mt-0.5 block text-xs font-normal text-muted-foreground">{o.body}</small></span>
+                          </Button>
+                        ))}
+                      </div>
+                    </fieldset>
                   </div>
-                )}
 
-                <div className="mt-7 space-y-3">
-                  {matches.map((s, i) => (
-                    <Reveal
-                      key={s.name}
-                      delay={i * 70}
-                      hover="lift"
-                      className="pop-card group relative overflow-hidden rounded-2xl p-5 sm:p-6"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-coral to-sun"
-                      />
-                      <div className="flex items-start justify-between gap-4 pl-2">
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-coral font-display text-xs font-bold text-white">
-                            {i + 1}
-                          </span>
-                          <h3 className="font-display text-lg font-semibold">{s.name}</h3>
-                        </div>
-                        <span className="shrink-0 rounded-full bg-secondary px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-foreground">
-                          {s.type}
-                        </span>
-                      </div>
-                      <div className="mt-4 grid gap-3 pl-2 sm:grid-cols-2">
-                        <p className="rounded-xl bg-secondary p-3.5 text-sm leading-relaxed text-muted-foreground">
-                          <strong className="mb-1 flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-[0.12em] text-foreground">
-                            <Lightbulb className="size-3.5 text-coral" /> Waarom
-                          </strong>
-                          {s.why}
-                        </p>
-                        <p className="rounded-xl bg-secondary p-3.5 text-sm leading-relaxed text-muted-foreground">
-                          <strong className="mb-1 flex items-center gap-1.5 font-display text-xs font-semibold uppercase tracking-[0.12em] text-foreground">
-                            <Eye className="size-3.5 text-teal" /> Echt zo
-                          </strong>
-                          {s.reality}
-                        </p>
-                      </div>
-                    </Reveal>
-                  ))}
+                  <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-border pt-6">
+                    <Button type="button" disabled={!level || !stance} onClick={() => setStep(1)} className="h-11 rounded-full bg-coral px-6 text-primary-foreground shadow-lift hover:bg-coral/90">Beginnen <ArrowRight /></Button>
+                    <p className="max-w-sm text-xs leading-relaxed text-muted-foreground"><strong className="text-foreground">Geen account, niets wordt opgeslagen.</strong> Sluit je dit, dan is alles weg.</p>
+                  </div>
                 </div>
+              )}
 
-                <div className="mt-8 flex flex-wrap gap-3 border-t border-border pt-7">
-                  <button
-                    type="button"
-                    onClick={reset}
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-border px-5 py-3 font-display text-sm font-semibold transition-colors hover:border-coral hover:text-coral"
-                  >
-                    <RotateCcw className="size-4" /> Opnieuw doen
-                  </button>
-                  <Link
-                    to="/voor-leerlingen"
-                    className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-display text-sm font-semibold text-ink-foreground transition-transform hover:-translate-y-0.5"
-                  >
-                    <GraduationCap className="size-4" /> Meer over de aanpak
-                  </Link>
+              {step === 1 && currentCard && (
+                <div key={`card-${index}`} className="tool-card-in">
+                  <div className="flex items-end justify-between gap-5">
+                    <div><span className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase text-teal"><Waves className="size-4" /> Stap 2 · op gevoel</span><h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">Wat spreekt je aan?</h2><p className="mt-2 text-sm text-muted-foreground">Activiteiten, geen studienamen. Er is geen fout antwoord.</p></div>
+                    <p className="shrink-0 font-display text-sm font-semibold"><span className="text-coral">{index + 1}</span> / {cards.length}</p>
+                  </div>
+                  <div className="relative mx-auto mt-8 max-w-2xl pb-4">
+                    <div aria-hidden="true" className="absolute inset-x-8 inset-y-0 translate-y-4 rounded-3xl border border-border bg-secondary/50" />
+                    <div aria-hidden="true" className="absolute inset-x-4 inset-y-0 translate-y-2 rounded-3xl border border-border bg-secondary" />
+                    <article className="relative min-h-72 overflow-hidden rounded-3xl bg-ink p-7 text-ink-foreground shadow-panel sm:p-10">
+                      <div aria-hidden="true" className="absolute -right-16 -top-20 size-64 rounded-full bg-coral/20 blur-3xl" />
+                      <div aria-hidden="true" className="absolute -bottom-24 -left-16 size-64 rounded-full bg-teal/20 blur-3xl" />
+                      <div className="relative flex min-h-52 flex-col justify-between">
+                        <span className="w-fit rounded-full border border-sun/35 bg-sun/15 px-3 py-1 font-display text-xs font-semibold text-sun">Activiteit {index + 1}</span>
+                        <p className="my-7 font-display text-2xl font-semibold leading-snug sm:text-3xl">{currentCard.text}</p>
+                        <p className="text-xs font-semibold uppercase text-mint">{currentCard.hint}</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div className="mx-auto mt-6 grid max-w-2xl grid-cols-2 gap-3">
+                    <Button type="button" variant="outline" onClick={() => swipe(false)} className="studio-choice h-14 rounded-xl text-sm"><X /> Niks voor mij</Button>
+                    <Button type="button" onClick={() => swipe(true)} className="studio-choice h-14 rounded-xl bg-coral text-primary-foreground shadow-lift hover:bg-coral/90"><Check /> Dit trekt me</Button>
+                  </div>
+                  <div className="mt-5 flex items-center justify-between">
+                    <Button type="button" variant="ghost" onClick={() => (index === 0 ? setStep(0) : setIndex((i) => i - 1))} className="text-muted-foreground"><ArrowLeft /> Terug</Button>
+                    <div className="flex gap-1.5" aria-label={`Kaart ${index + 1} van ${cards.length}`}>{cards.map((c, i) => <span key={c.text} className={`h-1.5 rounded-full ${i === index ? "w-7 bg-coral" : i < index ? "w-2 bg-teal" : "w-2 bg-border"}`} />)}</div>
+                  </div>
                 </div>
-              </div>
-            )}
-              </div>
+              )}
+
+              {step === 2 && (
+                <div className="tool-card-in mx-auto max-w-2xl">
+                  <span className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase text-teal"><PenLine className="size-4" /> Stap 3 · even doorvragen</span>
+                  <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">Wat zit hierachter?</h2>
+                  <Message from="assistant" className="mt-7 max-w-full">
+                    <MessageContent className="studio-soft w-full rounded-2xl p-5 text-base leading-relaxed">
+                      <MessageResponse>{ranking[0] ? `Je koos vooral richting ${(domainLabels[ranking[0][0]] ?? "").toLowerCase()}. Wat trok je daarin?` : "Je liet bijna alles liggen. Wat maakte dat niets klikte?"}</MessageResponse>
+                    </MessageContent>
+                  </Message>
+                  <PromptInput onSubmit={({ text }) => { setNote(text); setStep(3); }} className="mt-5 overflow-hidden rounded-2xl border-border bg-card shadow-panel">
+                    <PromptInputTextarea value={note} onChange={(event) => setNote(event.target.value)} placeholder="Typ in je eigen woorden — één of twee zinnen is genoeg." className="min-h-32 px-4 text-sm" />
+                    <PromptInputFooter className="justify-between px-3 pb-3">
+                      <span className="text-xs text-muted-foreground">Noor gebruikt dit alleen voor je uitleg.</span>
+                      <PromptInputSubmit disabled={!note.trim()} className="bg-coral text-primary-foreground hover:bg-coral/90" />
+                    </PromptInputFooter>
+                  </PromptInput>
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <Button type="button" variant="ghost" onClick={() => setStep(1)} className="text-muted-foreground"><ArrowLeft /> Terug</Button>
+                    <Button type="button" variant="outline" onClick={() => setStep(3)} className="rounded-full">Overslaan</Button>
+                  </div>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="tool-card-in">
+                  <div className="flex flex-wrap items-start justify-between gap-5">
+                    <div><span className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase text-teal"><GraduationCap className="size-4" /> Stap 4 · jouw richting</span><h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">Dit past bij je</h2><p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">Op basis van je swipes{level ? ` en je ${level}-niveau` : ""} — met uitleg waarom, en hoe de studie er écht uitziet.</p></div>
+                    {ranking[0] && <div className="studio-soft rounded-2xl px-4 py-3"><small className="text-muted-foreground">Sterkste richting</small><strong className="mt-0.5 block font-display text-sm text-teal">{domainLabels[ranking[0][0]]}</strong></div>}
+                  </div>
+                  {ranking.length > 0 && <div className="studio-soft mt-7 grid gap-4 rounded-2xl p-5 sm:grid-cols-3">{ranking.slice(0, 3).map(([d, n]) => <div key={d}><div className="flex justify-between gap-2 font-display text-xs font-semibold"><span>{domainLabels[d]}</span><span>{n}x</span></div><span className="mt-2 block h-1.5 overflow-hidden rounded-full bg-card"><span className="block h-full rounded-full bg-gradient-to-r from-teal to-coral" style={{ width: `${Math.round((n / (ranking[0]?.[1] ?? 1)) * 100)}%` }} /></span></div>)}</div>}
+                  <div className="mt-7 grid gap-4 xl:grid-cols-2">
+                    {matches.map((s, i) => <Reveal key={s.name} delay={i * 70} hover="lift" className="studio-panel relative overflow-hidden rounded-2xl p-5"><span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-coral to-sun" /><div className="flex items-start justify-between gap-4"><div className="flex items-center gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-full bg-coral font-display text-xs font-bold text-primary-foreground">{i + 1}</span><h3 className="font-display text-lg font-semibold">{s.name}</h3></div><span className="rounded-full bg-secondary px-2.5 py-1 text-[0.65rem] font-semibold uppercase">{s.type}</span></div><div className="mt-4 grid gap-3"><p className="rounded-xl bg-secondary/70 p-3 text-sm leading-relaxed text-muted-foreground"><strong className="mb-1 flex items-center gap-1.5 font-display text-xs uppercase text-foreground"><Lightbulb className="size-3.5 text-coral" /> Waarom</strong>{s.why}</p><p className="rounded-xl bg-secondary/70 p-3 text-sm leading-relaxed text-muted-foreground"><strong className="mb-1 flex items-center gap-1.5 font-display text-xs uppercase text-foreground"><Eye className="size-3.5 text-teal" /> Echt zo</strong>{s.reality}</p></div></Reveal>)}
+                  </div>
+                  <div className="mt-8 flex flex-wrap gap-3 border-t border-border pt-6"><Button type="button" variant="outline" onClick={reset} className="rounded-full"><RotateCcw /> Opnieuw doen</Button><Button asChild className="rounded-full bg-ink text-ink-foreground hover:bg-ink/90"><Link to="/voor-leerlingen"><GraduationCap /> Meer over de aanpak</Link></Button></div>
+                </div>
+              )}
             </div>
-            <footer className="border-t border-border px-5 py-4 text-center text-xs text-muted-foreground sm:px-8">
-              Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je decaan of mentor.
-            </footer>
-          </section>
-        </div>
+          </div>
+          <footer className="flex items-center justify-center gap-2 border-t border-border px-5 py-3 text-center text-[0.7rem] text-muted-foreground"><ShieldCheck className="size-3.5 shrink-0 text-teal" /> Deze verkenning geeft richting, geen definitief advies. Bespreek je uitkomst met je decaan of mentor.</footer>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
