@@ -590,3 +590,72 @@
     animation: none;
   }
 }
+
+/* ---- Premium Coral Reef study studio ---- */
+@utility study-studio {
+  background:
+    linear-gradient(to right, color-mix(in oklab, var(--color-teal) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-teal) 5%, transparent) 1px, transparent 1px),
+    radial-gradient(58rem 34rem at 8% 3%, color-mix(in oklab, var(--color-mint) 22%, transparent), transparent 68%),
+    radial-gradient(46rem 30rem at 96% 10%, color-mix(in oklab, var(--color-sun) 24%, transparent), transparent 66%),
+    var(--color-sand);
+  background-size: 38px 38px, 38px 38px, auto, auto, auto;
+}
+
+@utility studio-panel {
+  border: 1px solid color-mix(in oklab, var(--color-ink) 12%, transparent);
+  background: color-mix(in oklab, var(--color-card) 96%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--color-card) 80%, transparent) inset,
+    0 32px 90px -52px color-mix(in oklab, var(--color-ink) 54%, transparent);
+}
+
+@utility studio-soft {
+  border: 1px solid color-mix(in oklab, var(--color-teal) 14%, transparent);
+  background: color-mix(in oklab, var(--color-mint) 8%, var(--color-card));
+}
+
+@keyframes guide-aura {
+  0%, 100% { opacity: 0.42; transform: scale(0.92); }
+  50% { opacity: 0.72; transform: scale(1.08); }
+}
+
+@keyframes guide-talk {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+
+.guide-aura {
+  animation: guide-aura 5s ease-in-out infinite;
+}
+
+.guide-equalizer span {
+  transform-origin: center;
+  animation: guide-talk 1.1s ease-in-out infinite;
+}
+
+.guide-equalizer span:nth-child(2n) { animation-delay: -0.35s; }
+.guide-equalizer span:nth-child(3n) { animation-delay: -0.7s; }
+
+.studio-step {
+  transition: color 220ms ease, opacity 220ms ease;
+}
+
+.studio-choice {
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.studio-choice:hover {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-aura,
+  .guide-equalizer span {
+    animation: none;
+  }
+
+  .studio-choice:hover {
+    transform: none;
+  }
+}
