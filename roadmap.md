@@ -1,1 +1,2 @@
 - [x] Tool: bouw optie 3 als schermvullende Coral Reef AI-ervaring met levende robot links en subtiele futuristische effecten
+- [ ] Tool: premium schermmakeover uitvoeren; uitsluitend frontend-layout, zonder backend- of echte AI-koppeling
