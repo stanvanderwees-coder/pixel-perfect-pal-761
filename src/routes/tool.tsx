@@ -254,7 +254,7 @@ function ToolPage() {
     "Mooi. Kies op gevoel — er zijn geen foute antwoorden.",
     "Ik zie een richting ontstaan. Vertel me wat je daarin aanspreekt.",
     "Dit zijn studies die aansluiten op wat jij belangrijk vindt.",
-  ][step];
+  ][step] ?? "Ik denk met je mee.";
 
   const currentCard = cards[index];
 
