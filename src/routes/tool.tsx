@@ -25,16 +25,6 @@ import logoMark from "@/assets/logo-mark.png";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import {
-  Conversation,
-  ConversationContent,
-  ConversationScrollButton,
-} from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
-import {
   PromptInput,
   PromptInputFooter,
   PromptInputSubmit,
