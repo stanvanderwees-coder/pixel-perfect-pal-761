@@ -25,21 +25,16 @@ import logoMark from "@/assets/logo-mark.png";
 import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import {
-  Conversation,
-  ConversationContent,
-  ConversationScrollButton,
-} from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
-import {
   PromptInput,
   PromptInputFooter,
   PromptInputSubmit,
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
+import {
+  Message,
+  MessageContent,
+  MessageResponse,
+} from "@/components/ai-elements/message";
 
 
 export const Route = createFileRoute("/tool")({
@@ -252,40 +247,55 @@ function ToolPage() {
   const guideStep = [
     {
       title: "Eerst even voorstellen",
-      body: `Hoi! Ik ben **Noor**, je AI-gids. In vier korte stappen help ik je studies vinden die echt bij je passen.
-- Kies hier je niveau.
-- Vertel waar je nu in je studiekeuze staat.
-- Geen goed of fout — alles mag.`,
+      intro:
+        "Hoi! Ik ben Noor, je AI-gids. In vier korte stappen help ik je studies vinden die echt bij je passen.",
+      lines: [
+        "Kies hier je niveau.",
+        "Vertel waar je nu in je studiekeuze staat.",
+        "Geen goed of fout — alles mag.",
+      ],
     },
     {
       title: "Swipen op wat je leuk vindt",
-      body: `Je krijgt acht korte activiteiten. Kies op gevoel:
-- **Dit trekt me** → het klinkt als iets voor jou.
-- **Niks voor mij** → het spreekt je (nog) niet aan.
-Zo bouwen we samen een beeld van wat jou energie geeft.`,
+      intro: "Je krijgt acht korte activiteiten. Kies op gevoel.",
+      lines: [
+        "Dit trekt me → het klinkt als iets voor jou.",
+        "Niks voor mij → het spreekt je (nog) niet aan.",
+        "Zo bouwen we samen een beeld van wat jou energie geeft.",
+      ],
     },
     {
       title: "Een klein stapje verder",
-      body: `Je swipes geven een eerste richting. Nu benieuwd ik wat je daar zelf in herkent.
-- Typ in je eigen woorden wat je aanspreekt.
-- Eén of twee zinnen is genoeg.
-- Dit helpt om je uitleg straks beter te laten aansluiten.`,
+      intro:
+        "Je swipes geven een eerste richting. Nu benieuwd ik wat je daar zelf in herkent.",
+      lines: [
+        "Typ in je eigen woorden wat je aanspreekt.",
+        "Eén of twee zinnen is genoeg.",
+        "Dit helpt om je uitleg straks beter te laten aansluiten.",
+      ],
     },
     {
       title: "Dit zijn studies voor jou",
-      body: `Op basis van je keuzes laat ik studies zien die bij jouw antwoorden passen.
-- Bij elke studie zie je **waarom** het past.
-- En ook hoe de studie **echt** is.
-- Bespreek je lijst daarna met je decaan of mentor.`,
+      intro:
+        "Op basis van je keuzes laat ik studies zien die bij jouw antwoorden passen.",
+      lines: [
+        "Bij elke studie zie je waarom het past.",
+        "En ook hoe de studie écht is.",
+        "Bespreek je lijst daarna met je decaan of mentor.",
+      ],
     },
-  ][step] ?? { title: "Ik denk met je mee.", body: "Kies een stap om verder te gaan." };
+  ][step] ?? {
+    title: "Ik denk met je mee.",
+    intro: "Kies een stap om verder te gaan.",
+    lines: [],
+  };
 
   const currentCard = cards[index];
 
   return (
     <main className="study-studio min-h-[calc(100svh-4rem)] p-3 sm:p-5 lg:p-7">
       <div className="studio-panel mx-auto grid min-h-[calc(100svh-6rem)] max-w-[1540px] overflow-hidden rounded-[1.5rem] lg:grid-cols-[minmax(290px,0.68fr)_minmax(0,1.65fr)]">
-        <aside className="relative flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:min-h-0 lg:p-9">
+        <aside className="relative order-2 flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:order-none lg:min-h-0 lg:p-9">
           <div aria-hidden="true" className="guide-aura absolute -left-24 top-24 size-80 rounded-full bg-teal/20 blur-3xl" />
           <div aria-hidden="true" className="absolute -bottom-32 -right-28 size-80 rounded-full bg-coral/15 blur-3xl" />
           <div className="relative z-10 flex items-center justify-between gap-3">
@@ -318,22 +328,9 @@ Zo bouwen we samen een beeld van wat jou energie geeft.`,
             </h1>
           </div>
 
-          <div className="relative z-10 hidden sm:block">
-            <p className="mb-2 text-center font-display text-xs font-semibold uppercase text-mint">Uitleg bij deze stap</p>
-            <Conversation className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md">
-              <ConversationContent className="gap-3 p-4">
-                <Message from="assistant" className="max-w-full">
-                  <MessageContent className="text-ink-foreground">
-                    <MessageResponse className="text-ink-foreground">{`### ${guideStep.title}\n${guideStep.body}`}</MessageResponse>
-                  </MessageContent>
-                </Message>
-              </ConversationContent>
-              <ConversationScrollButton />
-            </Conversation>
-          </div>
         </aside>
 
-        <section className="flex min-w-0 flex-col bg-card/95">
+        <section className="order-1 flex min-w-0 flex-col bg-card/95 lg:order-none">
           <header className="border-b border-border px-5 py-4 sm:px-8 lg:px-10">
             <div className="flex items-start justify-between gap-5">
               <div>
@@ -358,6 +355,40 @@ Zo bouwen we samen een beeld van wat jou energie geeft.`,
               <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 5)}%` }} />
             </div>
           </header>
+
+          <div className="border-b border-border bg-card/50 px-5 py-3 sm:px-8 sm:py-4 lg:px-10">
+            <div className="mx-auto flex max-w-4xl items-start gap-3 rounded-2xl border border-teal/20 bg-mint/10 p-3 sm:gap-4 sm:p-4">
+              <div className="relative shrink-0">
+                <span className="ai-live-dot absolute -right-0.5 -top-0.5 size-2.5 rounded-full bg-mint" />
+                <img
+                  src={logoMark}
+                  alt=""
+                  className="size-10 rounded-full bg-ink p-1.5 object-contain sm:size-12"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex h-5 items-center rounded-full bg-teal/10 px-2 font-display text-[0.65rem] font-semibold uppercase text-teal">
+                    Noor legt uit
+                  </span>
+                  <span className="font-display text-[0.65rem] font-semibold uppercase text-muted-foreground">
+                    Stap {step + 1} van {totalSteps}
+                  </span>
+                </div>
+                <h3 className="mt-1 font-display text-sm font-semibold sm:text-base">
+                  {guideStep.title}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {guideStep.intro}
+                </p>
+                <ul className="mt-2 hidden list-disc space-y-0.5 pl-4 text-xs text-muted-foreground sm:block">
+                  {guideStep.lines.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
 
           <div className="flex-1 overflow-y-auto px-5 py-7 sm:px-8 lg:px-10 lg:py-9">
             <div className="mx-auto w-full max-w-4xl">
