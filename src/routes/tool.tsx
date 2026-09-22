@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   ArrowLeft,
@@ -61,6 +61,34 @@ type Level = "havo" | "vwo";
 type Stance = "geen-idee" | "twijfel";
 
 type Domain = "mens" | "techniek" | "ondernemen" | "creatief" | "natuur";
+
+function TypedGuideText({ text }: { text: string }) {
+  const [visibleText, setVisibleText] = useState("");
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisibleText(text);
+      return;
+    }
+
+    setVisibleText("");
+    let character = 0;
+    const timer = window.setInterval(() => {
+      character += 1;
+      setVisibleText(text.slice(0, character));
+      if (character >= text.length) window.clearInterval(timer);
+    }, 24);
+
+    return () => window.clearInterval(timer);
+  }, [text]);
+
+  return (
+    <span aria-label={text}>
+      <span aria-hidden="true">{visibleText}</span>
+      {visibleText.length < text.length && <span aria-hidden="true" className="guide-caret ml-0.5 inline-block h-[1em] w-0.5 translate-y-0.5 rounded-full bg-coral" />}
+    </span>
+  );
+}
 
 const domainLabels: Record<Domain, string> = {
   mens: "Mensen & gedrag",
@@ -356,14 +384,14 @@ function ToolPage() {
             </div>
           </header>
 
-          <div className="border-b border-border bg-card/50 px-5 py-3 sm:px-8 sm:py-4 lg:px-10">
-            <div className="mx-auto flex max-w-4xl items-start gap-3 rounded-2xl border border-teal/20 bg-mint/10 p-3 sm:gap-4 sm:p-4">
+          <div className="border-b border-border bg-card/50 px-5 py-4 sm:px-8 sm:py-5 lg:px-10">
+            <div className="mx-auto flex max-w-4xl items-start gap-4 rounded-2xl border border-teal/25 bg-mint/10 p-4 shadow-sm sm:gap-5 sm:p-5">
               <div className="relative shrink-0">
                 <span className="ai-live-dot absolute -right-0.5 -top-0.5 size-2.5 rounded-full bg-mint" />
                 <img
                   src={logoMark}
                   alt=""
-                  className="size-10 rounded-full bg-ink p-1.5 object-contain sm:size-12"
+                  className="size-12 rounded-full bg-ink p-1.5 object-contain sm:size-14"
                 />
               </div>
               <div className="min-w-0 flex-1">
@@ -375,13 +403,13 @@ function ToolPage() {
                     Stap {step + 1} van {totalSteps}
                   </span>
                 </div>
-                <h3 className="mt-1 font-display text-sm font-semibold sm:text-base">
+                <h3 className="mt-2 font-display text-base font-semibold sm:text-lg">
                   {guideStep.title}
                 </h3>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                  {guideStep.intro}
+                <p className="mt-1.5 min-h-[2.9em] text-sm leading-relaxed text-foreground sm:text-base">
+                  <TypedGuideText key={step} text={guideStep.intro} />
                 </p>
-                <ul className="mt-2 hidden list-disc space-y-0.5 pl-4 text-xs text-muted-foreground sm:block">
+                <ul className="mt-3 hidden list-disc space-y-1 pl-4 text-sm text-muted-foreground sm:block">
                   {guideStep.lines.map((line, i) => (
                     <li key={i}>{line}</li>
                   ))}
