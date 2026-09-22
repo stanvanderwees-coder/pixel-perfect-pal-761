@@ -356,6 +356,40 @@ function ToolPage() {
             </div>
           </header>
 
+          <div className="border-b border-border bg-card/50 px-5 py-3 sm:px-8 sm:py-4 lg:px-10">
+            <div className="mx-auto flex max-w-4xl items-start gap-3 rounded-2xl border border-teal/20 bg-mint/10 p-3 sm:gap-4 sm:p-4">
+              <div className="relative shrink-0">
+                <span className="ai-live-dot absolute -right-0.5 -top-0.5 size-2.5 rounded-full bg-mint" />
+                <img
+                  src={logoMark}
+                  alt=""
+                  className="size-10 rounded-full bg-ink p-1.5 object-contain sm:size-12"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex h-5 items-center rounded-full bg-teal/10 px-2 font-display text-[0.65rem] font-semibold uppercase text-teal">
+                    Noor legt uit
+                  </span>
+                  <span className="font-display text-[0.65rem] font-semibold uppercase text-muted-foreground">
+                    Stap {step + 1} van {totalSteps}
+                  </span>
+                </div>
+                <h3 className="mt-1 font-display text-sm font-semibold sm:text-base">
+                  {guideStep.title}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {guideStep.intro}
+                </p>
+                <ul className="mt-2 hidden list-disc space-y-0.5 pl-4 text-xs text-muted-foreground sm:block">
+                  {guideStep.lines.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="flex-1 overflow-y-auto px-5 py-7 sm:px-8 lg:px-10 lg:py-9">
             <div className="mx-auto w-full max-w-4xl">
               {step === 0 && (
