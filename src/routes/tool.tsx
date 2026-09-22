@@ -295,7 +295,7 @@ function ToolPage() {
   return (
     <main className="study-studio min-h-[calc(100svh-4rem)] p-3 sm:p-5 lg:p-7">
       <div className="studio-panel mx-auto grid min-h-[calc(100svh-6rem)] max-w-[1540px] overflow-hidden rounded-[1.5rem] lg:grid-cols-[minmax(290px,0.68fr)_minmax(0,1.65fr)]">
-        <aside className="relative flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:min-h-0 lg:p-9">
+        <aside className="relative order-2 flex min-h-[330px] flex-col overflow-hidden bg-ink p-5 text-ink-foreground sm:min-h-[390px] sm:p-8 lg:order-none lg:min-h-0 lg:p-9">
           <div aria-hidden="true" className="guide-aura absolute -left-24 top-24 size-80 rounded-full bg-teal/20 blur-3xl" />
           <div aria-hidden="true" className="absolute -bottom-32 -right-28 size-80 rounded-full bg-coral/15 blur-3xl" />
           <div className="relative z-10 flex items-center justify-between gap-3">
