@@ -318,16 +318,19 @@ Zo bouwen we samen een beeld van wat jou energie geeft.`,
             </h1>
           </div>
 
-          <Conversation className="relative z-10 hidden max-h-36 min-h-28 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md sm:block">
-            <ConversationContent className="gap-3 p-4">
-              <Message from="assistant" className="max-w-full">
-                <MessageContent className="text-ink-foreground">
-                  <MessageResponse className="text-ink-foreground">{guideCopy}</MessageResponse>
-                </MessageContent>
-              </Message>
-            </ConversationContent>
-            <ConversationScrollButton />
-          </Conversation>
+          <div className="relative z-10 hidden sm:block">
+            <p className="mb-2 text-center font-display text-xs font-semibold uppercase text-mint">Uitleg bij deze stap</p>
+            <Conversation className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md">
+              <ConversationContent className="gap-3 p-4">
+                <Message from="assistant" className="max-w-full">
+                  <MessageContent className="text-ink-foreground">
+                    <MessageResponse className="text-ink-foreground">### {guideStep.title}\n{guideStep.body}</MessageResponse>
+                  </MessageContent>
+                </Message>
+              </ConversationContent>
+              <ConversationScrollButton />
+            </Conversation>
+          </div>
         </aside>
 
         <section className="flex min-w-0 flex-col bg-card/95">
