@@ -249,12 +249,36 @@ function ToolPage() {
     setNote("");
   }
 
-  const guideCopy = [
-    "Hoi! Eerst wil ik kort weten waar jij nu staat.",
-    "Mooi. Kies op gevoel — er zijn geen foute antwoorden.",
-    "Ik zie een richting ontstaan. Vertel me wat je daarin aanspreekt.",
-    "Dit zijn studies die aansluiten op wat jij belangrijk vindt.",
-  ][step] ?? "Ik denk met je mee.";
+  const guideStep = [
+    {
+      title: "Eerst even voorstellen",
+      body: `Hoi! Ik ben **Noor**, je AI-gids. In vier korte stappen help ik je studies vinden die echt bij je passen.
+- Kies hier je niveau.
+- Vertel waar je nu in je studiekeuze staat.
+- Geen goed of fout — alles mag.`,
+    },
+    {
+      title: "Swipen op wat je leuk vindt",
+      body: `Je krijgt acht korte activiteiten. Kies op gevoel:
+- **Dit trekt me** → het klinkt als iets voor jou.
+- **Niks voor mij** → het spreekt je (nog) niet aan.
+Zo bouwen we samen een beeld van wat jou energie geeft.`,
+    },
+    {
+      title: "Een klein stapje verder",
+      body: `Je swipes geven een eerste richting. Nu benieuwd ik wat je daar zelf in herkent.
+- Typ in je eigen woorden wat je aanspreekt.
+- Eén of twee zinnen is genoeg.
+- Dit helpt om je uitleg straks beter te laten aansluiten.`,
+    },
+    {
+      title: "Dit zijn studies voor jou",
+      body: `Op basis van je keuzes laat ik studies zien die bij jouw antwoorden passen.
+- Bij elke studie zie je **waarom** het past.
+- En ook hoe de studie **echt** is.
+- Bespreek je lijst daarna met je decaan of mentor.`,
+    },
+  ][step] ?? { title: "Ik denk met je mee.", body: "Kies een stap om verder te gaan." };
 
   const currentCard = cards[index];
 
@@ -294,16 +318,19 @@ function ToolPage() {
             </h1>
           </div>
 
-          <Conversation className="relative z-10 hidden max-h-36 min-h-28 rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md sm:block">
-            <ConversationContent className="gap-3 p-4">
-              <Message from="assistant" className="max-w-full">
-                <MessageContent className="text-ink-foreground">
-                  <MessageResponse className="text-ink-foreground">{guideCopy}</MessageResponse>
-                </MessageContent>
-              </Message>
-            </ConversationContent>
-            <ConversationScrollButton />
-          </Conversation>
+          <div className="relative z-10 hidden sm:block">
+            <p className="mb-2 text-center font-display text-xs font-semibold uppercase text-mint">Uitleg bij deze stap</p>
+            <Conversation className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/10 backdrop-blur-md">
+              <ConversationContent className="gap-3 p-4">
+                <Message from="assistant" className="max-w-full">
+                  <MessageContent className="text-ink-foreground">
+                    <MessageResponse className="text-ink-foreground">{`### ${guideStep.title}\n${guideStep.body}`}</MessageResponse>
+                  </MessageContent>
+                </Message>
+              </ConversationContent>
+              <ConversationScrollButton />
+            </Conversation>
+          </div>
         </aside>
 
         <section className="flex min-w-0 flex-col bg-card/95">
@@ -327,7 +354,7 @@ function ToolPage() {
                 ))}
               </div>
             </div>
-            <div className="mt-4 h-1 overflow-hidden rounded-full bg-secondary">
+            <div className="mt-5 h-2.5 overflow-hidden rounded-full bg-secondary">
               <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 5)}%` }} />
             </div>
           </header>
