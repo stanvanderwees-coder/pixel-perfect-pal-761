@@ -330,7 +330,7 @@ function ToolPage() {
 
         </aside>
 
-        <section className="flex min-w-0 flex-col bg-card/95">
+        <section className="order-1 flex min-w-0 flex-col bg-card/95 lg:order-none">
           <header className="border-b border-border px-5 py-4 sm:px-8 lg:px-10">
             <div className="flex items-start justify-between gap-5">
               <div>
