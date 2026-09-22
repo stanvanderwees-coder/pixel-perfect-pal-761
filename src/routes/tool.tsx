@@ -324,7 +324,7 @@ Zo bouwen we samen een beeld van wat jou energie geeft.`,
               <ConversationContent className="gap-3 p-4">
                 <Message from="assistant" className="max-w-full">
                   <MessageContent className="text-ink-foreground">
-                    <MessageResponse className="text-ink-foreground">### {guideStep.title}\n{guideStep.body}</MessageResponse>
+                    <MessageResponse className="text-ink-foreground">{`### ${guideStep.title}\n${guideStep.body}`}</MessageResponse>
                   </MessageContent>
                 </Message>
               </ConversationContent>
