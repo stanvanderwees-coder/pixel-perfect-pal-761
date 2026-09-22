@@ -354,7 +354,7 @@ Zo bouwen we samen een beeld van wat jou energie geeft.`,
                 ))}
               </div>
             </div>
-            <div className="mt-4 h-1 overflow-hidden rounded-full bg-secondary">
+            <div className="mt-5 h-2.5 overflow-hidden rounded-full bg-secondary">
               <div className="h-full rounded-full bg-gradient-to-r from-teal via-mint to-coral transition-[width] duration-500" style={{ width: `${Math.max(progress, 5)}%` }} />
             </div>
           </header>
