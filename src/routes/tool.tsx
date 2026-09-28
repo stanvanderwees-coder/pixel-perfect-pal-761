@@ -1235,7 +1235,7 @@ function DetailScreen({ study, status, level, onBack }: { study: Study; status: 
             <div>
               <div className="flex h-10 overflow-hidden rounded-full ring-1 ring-t-line" aria-hidden>
                 {study.week.map((w, i) => (
-                  <span key={i} className="grid place-items-center text-xs font-bold" style={{ width: `${w}%`, background: ["var(--t-accent)", "var(--sun)", "var(--t-soft)"][i], color: i === 0 ? "var(--t-primary-fg)" : "#0b3a4f" }}>{w}%</span>
+                  <span key={i} className="grid place-items-center text-xs font-bold" style={{ width: `${w}%`, background: ["var(--t-accent)", "var(--sun)", "var(--t-soft)"][i], color: i === 0 ? "var(--t-primary-fg)" : i === 1 ? "#0b3a4f" : "var(--t-text)" }}>{w}%</span>
                 ))}
               </div>
               <ul className="mt-4 grid gap-2 sm:grid-cols-3">
