@@ -645,7 +645,7 @@ function ToolPage() {
               {(screen === "sit1" || screen === "sit2") && (
                 <SituationScreen
                   key={screen}
-                  question={situationQuestions[screen === "sit1" ? 0 : 1]}
+                  question={situationQuestions[screen === "sit1" ? 0 : 1]!}
                   index={screen === "sit1" ? 1 : 2}
                   value={situations[screen]}
                   onPick={(d) => setSituations((p) => ({ ...p, [screen]: d }))}
@@ -663,7 +663,7 @@ function ToolPage() {
                 <SwipeScreen
                   index={swipeIndex}
                   onDecide={(keep) => {
-                    if (keep) setLikes((l) => [...l, swipeCards[swipeIndex].domain]);
+                    if (keep) setLikes((l) => [...l, swipeCards[swipeIndex]!.domain]);
                     if (swipeIndex + 1 >= swipeCards.length) go("chat");
                     else setSwipeIndex((i) => i + 1);
                   }}
@@ -724,8 +724,8 @@ function ToolPage() {
             </div>
             <div className="mt-2 grid grid-cols-4 gap-1.5" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(stepProgress * 100)} aria-label="Voortgang">
               {[0, 1, 2, 3].map((i) => {
-                const segStart = [0, 6 / 9, 7 / 9, 8 / 9][i];
-                const segEnd = [6 / 9, 7 / 9, 8 / 9, 1][i];
+                const segStart = [0, 6 / 9, 7 / 9, 8 / 9][i]!;
+                const segEnd = [6 / 9, 7 / 9, 8 / 9, 1][i]!;
                 const fill = Math.max(0, Math.min(1, (stepProgress - segStart) / (segEnd - segStart)));
                 return (
                   <span key={i} className="h-3 overflow-hidden rounded-full bg-t-soft ring-1 ring-t-line">
@@ -909,7 +909,7 @@ function SwipeScreen({ index, onDecide, onStop }: { index: number; onDecide: (ke
   const [dx, setDx] = useState(0);
   const [drag, setDrag] = useState(false);
   const start = useRef(0);
-  const card = swipeCards[index];
+  const card = swipeCards[index]!;
   const next = swipeCards[index + 1];
   const m = domainMeta[card.domain];
   const Icon = m.icon;
@@ -996,7 +996,7 @@ function ChatScreen({ topDomain, setThinking, onAnswer, onDone }: { topDomain: D
       setMsgs((m) => {
         const add: ChatMsg[] = [];
         if (turn === 3 || turn === 6) add.push({ from: "noor", text: reflections[topDomain], reflect: true });
-        add.push({ from: "noor", text: chatScript[turn].q });
+        add.push({ from: "noor", text: chatScript[turn]!.q });
         return [...m, ...add];
       });
     }, 900);
@@ -1014,7 +1014,7 @@ function ChatScreen({ topDomain, setThinking, onAnswer, onDone }: { topDomain: D
     else setTurn((t) => t + 1);
   }
 
-  const current = chatScript[turn];
+  const current = chatScript[turn]!;
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-3 flex items-center justify-between text-sm">
