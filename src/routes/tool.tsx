@@ -830,7 +830,7 @@ function AboutScreen({ grade, setGrade, profiles, setProfiles, onBack, onNext }:
   );
 }
 
-function SituationScreen({ question, index, value, onPick, onBack, onNext }: { question: (typeof situationQuestions)[number]; index: number; value?: Domain; onPick: (d: Domain) => void; onBack: () => void; onNext: () => void }) {
+function SituationScreen({ question, index, value, onPick, onBack, onNext }: { question: (typeof situationQuestions)[number]; index: number; value: Domain | undefined; onPick: (d: Domain) => void; onBack: () => void; onNext: () => void }) {
   return (
     <div>
       <Heading eyebrow={`Stap 1 · Situatie ${index} van 2`} title={question.q} />
@@ -1117,7 +1117,7 @@ function ResultsScreen({ results, topDomains, reactions, adjustNote, profileStat
       <div className="mb-6 flex gap-4 rounded-3xl bg-t-bg p-5">
         <Noor size={44} />
         <p className="text-base">
-          Je kreeg de meeste energie van <strong>{domainMeta[topDomains[0]].label.toLowerCase()}</strong>
+          Je kreeg de meeste energie van <strong>{domainMeta[topDomains[0] ?? "mens"].label.toLowerCase()}</strong>
           {topDomains[1] && <> en <strong>{domainMeta[topDomains[1]].label.toLowerCase()}</strong></>}. Daarom staan deze studies bovenaan. Eén ervan is een minder bekende parel die ook goed past.
         </p>
       </div>
@@ -1334,10 +1334,10 @@ function DetailScreen({ study, status, level, onBack }: { study: Study; status: 
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-3">
-        <GhostButton onClick={() => idx > 0 && setSec(detailSections[idx - 1])}><ArrowLeft className="size-4" aria-hidden /> Vorige</GhostButton>
+        <GhostButton onClick={() => idx > 0 && setSec(detailSections[idx - 1]!)}><ArrowLeft className="size-4" aria-hidden /> Vorige</GhostButton>
         <span className="text-sm font-semibold tabular-nums">{idx + 1} / {detailSections.length}</span>
         {idx < detailSections.length - 1 ? (
-          <PrimaryButton onClick={() => setSec(detailSections[idx + 1])}>Volgende <ArrowRight className="size-4" aria-hidden /></PrimaryButton>
+          <PrimaryButton onClick={() => setSec(detailSections[idx + 1]!)}>Volgende <ArrowRight className="size-4" aria-hidden /></PrimaryButton>
         ) : (
           <PrimaryButton onClick={onBack}>Terug naar je studies</PrimaryButton>
         )}
