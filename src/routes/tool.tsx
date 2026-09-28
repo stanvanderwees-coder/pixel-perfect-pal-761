@@ -1401,7 +1401,7 @@ function OverviewScreen({ level, grade, profiles, topDomains, saved, fallback, w
   const list = saved.length ? saved : fallback;
   const counts: Record<Profile, number> = { NT: 0, NG: 0, EM: 0, CM: 0 };
   list.forEach((s) => s.fits.forEach((p) => (counts[p] += 1)));
-  const bestProfile = (Object.entries(counts) as [Profile, number][]).sort((x, y) => y[1] - x[1])[0][0];
+  const bestProfile = (Object.entries(counts) as [Profile, number][]).sort((x, y) => y[1] - x[1])[0]?.[0] ?? "NT";
   const text = [
     "Mijn StudyFit.AI-overzicht",
     `Niveau: ${level?.toUpperCase() ?? "-"} · leerjaar ${grade ?? "-"} · profiel ${profiles.length ? profiles.join(", ") : "-"}`,
